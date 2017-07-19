@@ -38,7 +38,7 @@ $( document ).ready(function() {
     $('#parent-top').change(function() {
         $('#parent-mid').html('<option value="0">Bez rodzica</option>');
         $('#parent-sub').html('<option value="0">Bez rodzica</option>');
-        $.get('http://127.0.0.1:8000/categories/'+ $(this).val() +'/children', function(data) {
+        $.get('/categories/'+ $(this).val() +'/children', function(data) {
             $.each(data, function(i, value) {
                 
                 $('#parent-mid').append($('<option>').text(value.name).attr('value', value.id));
@@ -48,7 +48,7 @@ $( document ).ready(function() {
 
     $('#parent-mid').change(function() {
         $('#parent-sub').html('<option value="0">Bez rodzica</option>');
-        $.get('http://127.0.0.1:8000/categories/'+ $(this).val() +'/children', function(data) {
+        $.get('/categories/'+ $(this).val() +'/children', function(data) {
             $.each(data, function(i, value) {
                 $('#parent-sub').append($('<option>').text(value.name).attr('value', value.id));
             });
