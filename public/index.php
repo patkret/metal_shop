@@ -1,5 +1,5 @@
 <?php
-
+header('S-Host: ' . $_SERVER['HTTP_HOST']);
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
