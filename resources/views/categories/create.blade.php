@@ -29,21 +29,16 @@
               </div>
               <div class="form-group">
               <fieldset>
-                {{Form::label('parent-top', 'Kategoria #1:')}}
-                <select class="form-control" id="parent-top" name="parent_top">
+                <div id="child-selects">
+                <input type="hidden"  value="0" id="parent" name="parent">
+                <label>Kategoria #1:</label>
+                <select class="form-control" data-id="1">
                   <option value="0">Bez rodzica</option>
                   @foreach($topCategories as $topCategory)
                     <option value="{{$topCategory->id}}">{{$topCategory->name}}</option>
                   @endforeach
                 </select>
-                {{Form::label('parent-mid', 'Kategoria #2:')}}
-                <select class="form-control" id="parent-mid" name="parent_mid">
-                  <option value="0">Bez rodzica</option>
-                </select>
-                {{Form::label('parent-sub', 'Kategoria #3:')}}
-                <select class="form-control" id="parent-sub" name="parent_sub">
-                  <option value="0">Bez rodzica</option>
-                </select>
+                </div>
               </fieldset>
               </div>
             </div>

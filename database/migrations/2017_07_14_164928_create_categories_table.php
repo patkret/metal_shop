@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Kalnoy\Nestedset\NestedSet;
 
 class CreateCategoriesTable extends Migration
 {
@@ -14,17 +15,15 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->string('name');
             $table->integer('order');
-            $table->integer('parent_id')->nullable();
             $table->string('photo');
             $table->string('logo');
             $table->text('description')->nullable();
             $table->boolean('visible');
             $table->boolean('pair');
-            $table->unsignedInteger('_lft')->nullable();
-            $table->unsignedInteger('_rgt')->nullable();
+            NestedSet::columns($table);
         });
     }
 

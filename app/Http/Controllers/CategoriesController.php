@@ -22,9 +22,9 @@ class CategoriesController extends Controller
 
     public function store(Request $request) 
     {                                   
+
         $photo = '';
         $logo = '';
-        $description = ' ';
         
         if ($request->file('logo')) {
             $logo = str_random(20).'.'.$request->file('logo')->getClientOriginalExtension();
@@ -38,7 +38,6 @@ class CategoriesController extends Controller
 
         $category = new Category;
 
-        $category->id = $request->id;
         $category->name = $request->name;
         $category->order = $request->order;
         $category->photo = $photo;
@@ -46,15 +45,9 @@ class CategoriesController extends Controller
         $category->description = $request->description;
         $category->visible = $request->visible;
         $category->pair = $request->pair;
-
-        if ($request->parent_sub) {
-            $parent = Category::find($request->parent_sub);
-            $parent->appendNode($category);
-        } elseif ($request->parent_mid) {
-            $parent = Category::find($request->parent_mid);
-            $parent->appendNode($category);
-        } elseif ($request->parent_top) {
-            $parent = Category::find($request->parent_top);
+        
+        if ($request->parent) {
+            $parent = Category::find($request->parent);
             $parent->appendNode($category);
         } else {
             $category->saveAsRoot();
@@ -64,55 +57,71 @@ class CategoriesController extends Controller
 
     }
 
-    public function showChildren($category) 
+    public function showChildren(Category $category) 
     {
-        if ($category == 0) {
+        if (!$category) {
             return;
         }
-        $root = Category::find($category);
-        $tree = $root->descendants->toTree($root);
+        
 
-        return $tree;
+        return $category->descendants->toTree();
+    }
+
+    public function showAncestors(Category $category) 
+    {
+        if (!$category) {
+            return;
+        }
+        
+
+        return $category->getAncestors();
     }
 
     public function edit(Category $category) 
     {
-        $topCategories = Category::whereIsRoot()->get(); #root, [][][]
-        $midCategories = [];
-        $subCategories = [];
-        $selected = [
-            'top' => 0,
-            'mid' => 0,
-            'sub' => 0
-        ];
-        
-        if (!$category->isRoot()) {
-            echo(!$category->isRoot());
-            
-            $parent = Category::find($category->parent_id);
-            if ($parent->isRoot()) { // parent-top, [Osprzęt][][]
-                $selected['top'] = $parent->id;
-                $midCategories = Category::descendantsOf($selected['top'])->toTree();
-            } else {
-                $parent2 = Category::find($parent->parent_id);
-                if ($parent2->isRoot()) { //parent-mid, [Osprzęt][Zawleczki][]
-                    $selected['top'] = $parent2->id;
-                    $midCategories = Category::descendantsOf($selected['top'])->toTree();
-                    $selected['mid'] = $parent->id;
-                } else {
-                    $parent3 = Category::find($parent2->parent_id); // parent-sub [Osprzęt][Zawleczki][Zawleczka A2]
-                    $selected['top'] = $parent3->id;
-                    $midCategories = Category::descendantsOf($selected['top'])->toTree();
-                    $selected['mid'] = $parent2->id;
-                    $subCategories = Category::descendantsOf($selected['mid'])->toTree();
-                    $selected['sub'] = $parent->id;
-                }
-            }
-        }
 
-        //dd($category->id);
+        $topCategories = Category::whereIsRoot()->get();
+
+        $selected = $category->id;
+
+        return view('categories.edit', compact('category', 'topCategories', 'selected'));
+
+        // $topCategories = Category::whereIsRoot()->get(); #root, [][][]
+        // $midCategories = [];
+        // $subCategories = [];
+        // $selected = [
+        //     'top' => 0,
+        //     'mid' => 0,
+        //     'sub' => 0
+        // ];
         
-        return view('categories.edit', compact('topCategories', 'midCategories', 'subCategories', 'category', 'selected'));
+        // if (!$category->isRoot()) {
+        //     echo(!$category->isRoot());
+            
+        //     $parent = Category::find($category->parent_id);
+        //     if ($parent->isRoot()) { // parent-top, [Osprzęt][][]
+        //         $selected['top'] = $parent->id;
+        //         $midCategories = Category::descendantsOf($selected['top'])->toTree();
+        //     } else {
+        //         $parent2 = Category::find($parent->parent_id);
+        //         if ($parent2->isRoot()) { //parent-mid, [Osprzęt][Zawleczki][]
+        //             $selected['top'] = $parent2->id;
+        //             $midCategories = Category::descendantsOf($selected['top'])->toTree();
+        //             $selected['mid'] = $parent->id;
+        //         } else {
+        //             $parent3 = Category::find($parent2->parent_id); // parent-sub [Osprzęt][Zawleczki][Zawleczka A2]
+        //             $selected['top'] = $parent3->id;
+        //             $midCategories = Category::descendantsOf($selected['top'])->toTree();
+        //             $selected['mid'] = $parent2->id;
+        //             $subCategories = Category::descendantsOf($selected['mid'])->toTree();
+        //             $selected['sub'] = $parent->id;
+        //         }
+        //     }
+        // }
+
+        
+        
+        // return view('categories.edit', compact('topCategories', 'midCategories', 'subCategories', 'category', 'selected'));
     }
 
     public function update ($category, Request $request) 
