@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\SynchronizeWarehouses::class,
-        Commands\SynchronizeCategories::class
+        Commands\SynchronizeCategories::class,
+        Commands\SynchronizeProducts::class
     ];
 
     /**

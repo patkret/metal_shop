@@ -73,55 +73,23 @@ class CategoriesController extends Controller
             return;
         }
         
+        return Category::ancestorsAndSelf($category);
+    }
 
-        return $category->getAncestors();
+    public function showRoots()
+    {
+        return Category::whereIsRoot()->get();
     }
 
     public function edit(Category $category) 
     {
+        $prevSibling = $category->getprevSibling() ? $category->getprevSibling()->id : 0;
 
         $topCategories = Category::whereIsRoot()->get();
 
         $selected = $category->id;
 
-        return view('categories.edit', compact('category', 'topCategories', 'selected'));
-
-        // $topCategories = Category::whereIsRoot()->get(); #root, [][][]
-        // $midCategories = [];
-        // $subCategories = [];
-        // $selected = [
-        //     'top' => 0,
-        //     'mid' => 0,
-        //     'sub' => 0
-        // ];
-        
-        // if (!$category->isRoot()) {
-        //     echo(!$category->isRoot());
-            
-        //     $parent = Category::find($category->parent_id);
-        //     if ($parent->isRoot()) { // parent-top, [Osprzęt][][]
-        //         $selected['top'] = $parent->id;
-        //         $midCategories = Category::descendantsOf($selected['top'])->toTree();
-        //     } else {
-        //         $parent2 = Category::find($parent->parent_id);
-        //         if ($parent2->isRoot()) { //parent-mid, [Osprzęt][Zawleczki][]
-        //             $selected['top'] = $parent2->id;
-        //             $midCategories = Category::descendantsOf($selected['top'])->toTree();
-        //             $selected['mid'] = $parent->id;
-        //         } else {
-        //             $parent3 = Category::find($parent2->parent_id); // parent-sub [Osprzęt][Zawleczki][Zawleczka A2]
-        //             $selected['top'] = $parent3->id;
-        //             $midCategories = Category::descendantsOf($selected['top'])->toTree();
-        //             $selected['mid'] = $parent2->id;
-        //             $subCategories = Category::descendantsOf($selected['mid'])->toTree();
-        //             $selected['sub'] = $parent->id;
-        //         }
-        //     }
-        // }
-
-        
-        
-        // return view('categories.edit', compact('topCategories', 'midCategories', 'subCategories', 'category', 'selected'));
+        return view('categories.edit', compact('category', 'topCategories', 'selected', 'prevSibling'));
     }
 
     public function update ($category, Request $request) 

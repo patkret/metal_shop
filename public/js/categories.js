@@ -2,18 +2,39 @@ $( document ).ready(function() {
 
     // recursive adding of parent select inputs
 
-    function appendChildrenSelect(parentValue, triggerID) {
-        $('#' + selectID).nextAll().remove();
+    function appendChildrenSelect(parentValue, triggerID, selected) {
         var selectID = parseInt(triggerID) + 1;
+        $('select[data-id="' + triggerID + '"]').nextAll().remove();
         $('#parent').val(parentValue);
         
-        $.get('/categories/' + parentValue + '/children', function (data) {
+        
+        $('#order').html('');
+        $('#order').html('<option value="0">Pierwsza</option>');
+        
+        var query = parentValue !== null ? '/categories/' + parentValue + '/children' : '/categories/roots';
+        
+        $.get(query, function (data) {
             if(data) {
+                $('#order').html('<option value="0">Pierwsza</option>');                
                 $select = $('<select class="form-control" data-id="' + selectID + '"><option value="0">Bez rodzica</option></select>');
                 $label = $('<label>Kategoria #' + selectID + ':</label>');
                 
                 $.each(data, function (i, value) {
-                    $select.append($('<option>').text(value.name).attr('value', value.id));
+                    $option = $('<option value="' + value.id + '">' + value.name + '</option>');
+                    
+                    if (value.id === $('#order').data('preceding')) {
+                        $('#order').append($('<option selected value="' + value.id + '">Po: ' + value.name + '</option>'));    
+                    } else {
+                        $('#order').append($('<option value="' + value.id + '">Po: ' + value.name + '</option>'));    
+                    }
+
+                    if (value.id === selected && value.id != $('#id').val()) {
+                        $select.append($option.attr('selected', 'selected'));
+                    } else {
+                        $select.append($option);
+                    }
+
+                    
                 });
                 
                 $select.on('change', function(e) {
@@ -28,9 +49,10 @@ $( document ).ready(function() {
 
     }
 
-    $('[data-id="1"').on('change', function(e) {
+    $('[data-id="1"]').on('change', function(e) {
         $(this).nextAll().remove();
         appendChildrenSelect(e.target.value, $(this).data('id'));
+
     });
 
     // end of parent select inputs
@@ -51,7 +73,9 @@ $( document ).ready(function() {
                     '<a class="btn btn-sm" href="categories/edit/' + item.id + '"><i class="fa fa-pencil-square-o fa-2x"></i></a>' +
                     '<a class="btn btn-sm delete" data-id="' + item.id + '"><i class="fa fa-minus-square-o fa-2x"></i></a>' +
                     '</div></div></li>');
-                $li.find('.box-header').prepend($button);
+                if(item.children.length) {
+                    $li.find('.box-header').prepend($button);
+                }
                 $childrenList.append($li);
             });
             $parent.append($childrenList);
@@ -86,47 +110,25 @@ $( document ).ready(function() {
                 $('ul[data-parent="' + id +'"]').toggle();
                 return;
             }
-
             getChildren(id);
         });
 
     });
 
     //end of index population
-    
-
-// <label>Kategoria #1:</label>
-// <select class="form-control" data-id="1">
-//   <option value="0">Bez rodzica</option>
-//   @foreach($topCategories as $topCategory)
-//     <option value="{{$topCategory->id}}" data-test="{{$selected}}" @if($topCategory->id == $selected) selected @endif>{{$topCategory->name}}</option>
-//   @endforeach
-// </select>
 
 
 
-
+    // populate parent selects in edit view
     $editField = $('div#child-selects[data-type="edit"]');
-    $rootItems = $editField.find('select[data-id="1"]').children();
+    // $rootItems = $editField.find('select[data-id="1"]').children();
     
     if($editField.length) {
         $.get('/categories/' + $editField.data('category') + '/ancestors', function (data) {
             if(data) {
                 var max = Object.keys(data).length
                 for (var i = 0; i < max; i++) {
-                    if(i == 0) {
-                        
-                    }
-
-                    var index = i+1;
-                    var $select = $('select[data-id="' + index + '"]');
-                    if($select.length) {
-                        $select.val(data[i].id);     
-                        $select.change();
-                        console.log('select');
-                        setTimeout(3000);
-                    }
-                    console.log('out of select');
+                    appendChildrenSelect(data[i].parent_id, i, data[i].id);
                 }
             }
         });

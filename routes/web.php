@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
 Route::post('/categories', 'CategoriesController@store');
+Route::get('/categories/roots/', 'CategoriesController@showRoots');
 Route::get('/categories/{category}/children', 'CategoriesController@showChildren');
 Route::get('/categories/{category}/ancestors', 'CategoriesController@showAncestors');
 Route::get('/categories/edit/{category}', 'CategoriesController@edit')->name('categories.edit');

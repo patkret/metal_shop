@@ -32,13 +32,6 @@
               <fieldset>
               <div id="child-selects" data-type="edit" data-category="{{$category->id}}">
                 <input type="hidden"  value="0" id="parent" name="parent">
-                {{-- <label>Kategoria #1:</label>
-                <select class="form-control" data-id="1">
-                  <option value="0">Bez rodzica</option>
-                  @foreach($topCategories as $topCategory)
-                    <option value="{{$topCategory->id}}" data-test="{{$selected}}" @if($topCategory->id == $selected) selected @endif>{{$topCategory->name}}</option>
-                  @endforeach
-                </select> --}}
                 </div>
               </fieldset>
               {{--  /select items  --}}
@@ -56,37 +49,48 @@
             <!-- <form role="form"> -->
             <div class="box-body">
               <div class="row">
-                <div class="col-xs-3 form-group">
+                <div class="col-xs-4 form-group">
                   {{Form::label('id', 'ID:')}}
-                  <input disabled name="id" id="id"  type="number" class="form-control" placeholder="Enter ..." value="{{$category->id}}">
+                  <input name="id" id="id" type="number" class="form-control" value="{{$category->id}}">
                 </div>
-                <div class="col-xs-3 form-group">
-                  {{Form::label('order', 'Kolejność:')}}
-                  <input id="order" name="order" type="number" class="form-control" placeholder="Enter ..." value="{{$category->order}}">
-                </div>
-                <div class="col-xs-3 form-group">
+                <div class="col-xs-4 form-group">
                   <div class="form-group">
                     {{Form::label('visible', 'Widoczny:')}}
-                    {{ Form::select('visible', ['1' => 'Tak', '0' => 'Nie'], $category->visible, ['class' => 'form-control']) }}
+                    <select id="visible" name="visible" class="form-control">
+                      <option value="1">Tak</option>
+                      <option value="0">Nie</option>
+                    </select>
                   </div>
   
                 </div>
-                <div class="col-xs-3 form-group">
+                <div class="col-xs-4 form-group">
                   <div class="form-group">
-                    {{Form::label('pair', 'Para:')}}
-                    {{ Form::select('pair', ['1' => 'Tak', '0' => 'Nie'], $category->pair, ['class' => 'form-control']) }}
+                    {{Form::label('pair', 'Ma parę:')}}
+                    <select id="pair" name="pair" class="form-control">
+                      <option value="1">Tak</option>
+                      <option value="0">Nie</option>
+                    </select>
                   </div>
   
                 </div>
               </div>
-  
+              <div class="row">
+                <div class="col-xs-12 form-group">
+                  {{Form::label('order', 'Kolejność:')}}
+                  <select id="order" name="order" class="form-control" data-preceding="{{$prevSibling}}">
+                      <option value="0">Pierwsza</option>
+                      {{-- @foreach($siblings as $sibling)
+                      @if ($sibling->id === $prevSibling->id)
+                        <option selected value="{{$sibling->id}}">{{$sibling->name}}</option>
+                      @else
+                        <option value="{{$sibling->id}}">{{$sibling->name}}</option>
+                      @endif
+                      @endforeach --}}
+                    </select>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-xs-6 form-group">
-                  {{--  <img alt="" class="center-block img-responsive">
-                  <label for="logo">Logo</label>
-                  <input type="file" id="logo" name="logo">
-                  <button class="btn btn-danger">Usuń</button>
-                  <input type="button" name="button" value="Zapisz" class="btn btn-success">  --}}
                   
                   {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
                   {{Form::file('photo')}}
