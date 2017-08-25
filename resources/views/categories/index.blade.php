@@ -2,38 +2,31 @@
 @section('content')
 
 <section class="content-header">
-      <h1>
-        Indeks
-        <small>Lista kategorii</small>
-      </h1>
-      <ol class="breadcrumb">
+      <ul class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Kategorie</a></li>
         <li class="active">Indeks</li>
-      </ol>
+      </ul>
 </section>
 
-<section class="content">
-    <ul class="categories-list" id="categories-list">
-        @foreach ($data as $topCategory)
-        <li class="box category-top" data-id="{{ $topCategory->id }}">
-            <div class="box-header">
-                <button type="button" class="btn btn-sm" data-type="toggle-children" data-id="{{ $topCategory->id }}">
-                    <i class="fa fa-arrow-right"></i>
-                </button>
-                <h3 class="box-title">{{ $topCategory->name }}</h3>
-                <!-- tools box -->
-                <div class="pull-right box-tools">
-                    <a class="btn btn-sm" href="{!! route('categories.edit', ['category'=> $topCategory->id]) !!}">
-                        <i class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
-                    <a class="btn btn-sm delete" data-id="{{ $topCategory->id }}">
-                        <i class="fa fa-minus-square-o fa-2x"></i>
-                    </a>
-                </div>
-            </div>            
+    <ul class="list-group categories-rows">
+        @foreach ($topCategories as $topCategory)
+        <li class="list-group-item categories-rows" data-id="{{ $topCategory->id }}">
+            <span class="folder"><i class="fa fa-folder"></i></span>
+            <span>[# {{ $topCategory->id }}]</span>
+            <span class="box-title">{{ $topCategory->name }}</span>
+            <div class="pull-right">
+                <a class="btn btn-sm" href="#">
+                    <i class="fa fa-level-down fa-2x"></i>
+                </a>
+                <a class="btn btn-sm" href="{!! route('categories.edit', ['category'=> $topCategory->id]) !!}">
+                    <i class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="btn btn-sm delete" href="{!! route('categories.delete', ['category'=> $topCategory->id]) !!}">
+                    <i class="fa fa-minus-square-o fa-2x"></i>
+                </a>
+            </div>
         </li>
         @endforeach
     </ul>
-</div>
 
 @endsection

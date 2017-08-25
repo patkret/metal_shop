@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 
 <section class="content-header">
@@ -15,6 +15,7 @@
 <section class="content">
     <div class="row">
       {{Form::open(['action' => 'CategoriesController@store', 'files' => true])}}
+        <input type="hidden"  value="0" id="order" name="order">
         <!-- left column -->
         <div class="col-md-6">
           <div class="box box-primary">
@@ -31,12 +32,11 @@
               <fieldset>
                 <div id="child-selects">
                 <input type="hidden"  value="0" id="parent" name="parent">
-                <label>Kategoria #1:</label>
-                <select class="form-control" data-id="1">
+                <select class="form-control ancestor">
                   <option value="0">Bez rodzica</option>
-                  @foreach($topCategories as $topCategory)
-                    <option value="{{$topCategory->id}}">{{$topCategory->name}}</option>
-                  @endforeach
+                    @foreach($topCategories as $topCategory)
+                        <option value="{{$topCategory->id}}">{{$topCategory->name}}</option>
+                    @endforeach
                 </select>
                 </div>
               </fieldset>
@@ -54,10 +54,10 @@
             <!-- <form role="form"> -->
             <div class="box-body">
               <div class="row">
-                <div class="col-xs-4 form-group">
-                  {{Form::label('id', 'ID:')}}
-                  <input name="id" id="id" type="number" class="form-control" placeholder="Enter ...">
-                </div>
+                {{--<div class="col-xs-4 form-group">--}}
+                  {{--{{Form::label('id', 'ID:')}}--}}
+                  {{--<input name="id" id="id" type="number" class="form-control" placeholder="Enter ...">--}}
+                {{--</div>--}}
                 <div class="col-xs-4 form-group">
                   <div class="form-group">
                     {{Form::label('visible', 'Widoczny:')}}
@@ -66,7 +66,7 @@
                       <option value="0">Nie</option>
                     </select>
                   </div>
-  
+
                 </div>
                 <div class="col-xs-4 form-group">
                   <div class="form-group">
@@ -76,26 +76,18 @@
                       <option value="0">Nie</option>
                     </select>
                   </div>
-  
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 form-group">
-                  {{Form::label('order', 'Kolejność:')}}
-                  <select id="order" name="order" class="form-control">
-                      <option value="0">Pierwsza</option>
-                    </select>
+
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-6 form-group">
-                  
+
                   {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
                   {{Form::file('photo')}}
-                  
 
-                       
-  
+
+
+
                 </div>
                 <div class="col-xs-6 form-group">
                   <img alt="" class="center-block img-responsive">
@@ -122,7 +114,7 @@
         {{ session()->get('message') }}
     </div>
     @endif
-  
+
   </section>
 
 @endsection

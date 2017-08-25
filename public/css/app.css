@@ -8328,3 +8328,16 @@ button.close {
 .fa-minus-square-o.fa-2x {
   color: red;
 }
+
+.products > .select-wrapper {
+  display: inline-block; 
+  width: 50%;
+}
+
+.list-group-item.categories-rows {
+  font-size: 2rem;
+}
+
+.visible {
+  color: #72afd2;
+}
