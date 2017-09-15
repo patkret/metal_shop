@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePricesTable extends Migration
+class CreateSetHasProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prices', function (Blueprint $table) {
+        Schema::create('set_has_products', function (Blueprint $table) {
+            $table->integer('id');
             $table->integer('product_id');
-            $table->string('price_basis');
-            $table->integer('factor');
-            $table->boolean('show_missing');
+            $table->float('amount');
         });
     }
 
@@ -28,6 +27,6 @@ class CreatePricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('set_has_products');
     }
 }

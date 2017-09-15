@@ -30,16 +30,12 @@ Route::get('/categories/edit/{category}', 'CategoriesController@edit')->name('ca
 Route::get('/categories/delete', 'CategoriesController@delete')->name('categories.delete');
 Route::get('/categories/{parent}/append/{category}', 'CategoriesController@append')->name('categories.append');
 Route::get('/categories/move/{preceding}/{category}/{following}', 'CategoriesController@move')->name('categories.move');
-//Route::post('/categories', 'CategoriesController@store');
-//Route::get('/categories/roots/', 'CategoriesController@showRoots');
-//Route::get('/categories/{category}/children', 'CategoriesController@showChildren');
-//Route::get('/categories/{category}/ancestors', 'CategoriesController@showAncestors');
-//Route::get('/categories/edit/{category}', 'CategoriesController@edit')->name('categories.edit');
-//Route::post('/categories/update/{category}', 'CategoriesController@update')->name('categories.update');
-//Route::post('/categories/delete/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 
 // products
+Route::get('/products/create', 'ProductsController@create')->name('products.create');
+Route::post('/products/store', 'ProductsController@store')->name('products.store');
 Route::get('/products/toggle/{product}', 'ProductsController@toggle')->name('products.toggle');
+Route::get('/products/show/{product}', 'ProductsController@show')->name('products.show');
 Route::get('/products/edit/{product}', 'ProductsController@edit')->name('products.edit');
 Route::post('/products/update/{product}', 'ProductsController@update')->name('products.update');
 
@@ -52,11 +48,19 @@ Route::post('/products/assign', 'ProductsController@assignProduct')->name('produ
 Route::post('/products/unassign', 'ProductsController@unassignProduct')->name('products.unassignProduct');
 Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
 
-Route::get('/products/prices', 'ProductsController@prices')->name('products.prices');
+Route::get('/products/price', 'ProductsController@price')->name('products.price');
 Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
 
 Route::get('/products/description', 'ProductsController@description')->name('products.description');
 
+
+// SETS
+Route::get('/sets', 'SetsController@index')->name('sets.index');
+Route::get('/sets/create', 'SetsController@create')->name('sets.create');
+Route::get('/sets/{set}/edit', 'SetsController@edit')->name('sets.edit');
+Route::get('/sets/{set}/delete', 'SetsController@destroy')->name('sets.destroy');
+Route::post('/sets/{set}/update', 'SetsController@update')->name('sets.update');
+Route::post('/sets/store', 'SetsController@store')->name('sets.store');
 
 Route::get('/admin', function () {
     return view('admin/admin');

@@ -6,15 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['old_id', 'code', 'name', 'unit', 'wh_price', 'ret_price', 'avg_price', 'stock_10',
-        'stock_20', 'manual', 'weight', 'visible'];
+    protected $fillable = ['id', 'old_id', 'code', 'name', 'unit', 'weight', 'desc_short', 'desc_long', 'visible', 'photo_1', 'photo_2', 'stock_10', 'stock_20', 'stock_30', 'show_missing', 'wh_price', 'ret_price', 'price_basis', 'avg_buy_price', 'custom_margin', 'value_discount', 'vd_target', 'amount_discount', 'ad_target', 'amount_discount_2', 'ad_target_2'
+    ];
 
     public $timestamps = false;
-
-    public function price()
-    {
-
-        return $this->hasOne('App\Price');
-
-    }
 }

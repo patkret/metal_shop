@@ -42,7 +42,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! route('categories.index') !!}">Indeks</a></li>
-                    <li><a href="{!! route('categories.create') !!}">Dodaj nową</a></li>
+                    <li><a href="{!! route('categories.create') !!}">Stwórz kategorię</a></li>
                 </ul>
             </li>
 
@@ -56,8 +56,22 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! route('products.assign') !!}">Przypisywanie</a></li>
-                    <li><a href="{!! route('products.description') !!}">Opis i wyświetlanie</a></li>
-                    <li><a href="{!! route('products.prices') !!}">Ceny i rabaty</a></li>
+                    <li><a href="{!! route('products.description') !!}">Edycja i wyświetlanie</a></li>
+                    <li><a href="{!! route('products.create') !!}">Stwórz produkt</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i>
+                    <span>Zestawy</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{!! route('sets.index') !!}">Indeks</a></li>
+                    <li><a href="{!! route('sets.create') !!}">Stwórz zestaw</a></li>
                 </ul>
             </li>
         </ul>

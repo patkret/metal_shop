@@ -58,5 +58,7 @@ class SynchronizeCategories extends Command
         }
 
         Category::fixTree();
+
+
     }
 }

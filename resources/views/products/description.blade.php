@@ -59,8 +59,8 @@
                     <th>ID</th>
                     <th>Kod</th>
                     <th>Produkt</th>
-                    <th>Widoczność</th>
                     <th>Edycja</th>
+                    <th>Widoczność</th>
                 </tr>
                 </thead>
                 <tbody>

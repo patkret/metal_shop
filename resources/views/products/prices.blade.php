@@ -35,11 +35,11 @@
                 </div>
             </div>
 
-            <div class="checkbox-inline">
-                <label><input type="checkbox" id="show-category-template">Edytuj ceny dla wszystkich produktów kategorii</label>
-            </div>
+            {{--<div class="checkbox-inline">--}}
+                {{--<label><input type="checkbox" id="show-category-template">Edytuj ceny dla wszystkich produktów kategorii</label>--}}
+            {{--</div>--}}
 
-            <h3>Wyszukane</h3>
+            <h4>Wyszukane</h4>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover" id="editable-products-price">
                     <thead>
@@ -56,6 +56,7 @@
             </div>
         </div>
         <div class="col-md-6">
+
             <div id="category-template" style="display: none;">
                 <h4>Edycja ceny produktów w kategorii</h4>
                 <form class="form-horizontal">
@@ -73,11 +74,13 @@
                         <div class="form-group">
                             <label for="price-change" class="col-sm-9">Zmiana ceny w %:</label>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control" id="price-change" name="price-change" value="0">
+                                <input type="number" class="form-control" id="price-change" name="price-change"
+                                       value="0">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="current-price" class="col-sm-9">Czy wyświetlać cenę produktu, którego brak w magazynach:</label>
+                            <label for="current-price" class="col-sm-9">Czy wyświetlać cenę produktu, którego brak w
+                                magazynach:</label>
 
                             <div class="form-group radio">
                                 <label class="radio-inline">
@@ -96,13 +99,14 @@
                 </form>
             </div>
 
-            <h4>Edycja ceny produktu</h4>
-            <form class="form-horizontal" id="product-price">
-                <div class="box-body">
+            <div class="box-body">
+                <form class="form-horizontal" id="product-price">
+                    <h4>Ceny:</h4>
                     <div class="form-group">
                         <label for="current-price" class="col-sm-9">Aktualna cena wybranego produktu w sklepie:</label>
                         <div class="col-sm-3">
-                            <input type="number" class="form-control" id="current-price" name="current-price" value="0" step=".01" disabled>
+                            <input type="number" class="form-control" id="current-price" name="current-price" value="0"
+                                   step=".01" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,13 +119,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="price-change" class="col-sm-9">Zmiana ceny w %:</label>
-                        <div class="col-sm-3">
-                            <input type="number" class="form-control" id="price-change" name="price-change" value="100">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="current-price" class="col-sm-9">Czy wyświetlać cenę produktu, którego brak w magazynach:</label>
+                        <label for="current-price" class="col-sm-9">Wyświetlać braki w magazynach:</label>
                         <div class="form-group radio">
                             <label class="radio-inline">
                                 <input type="radio" name="show_missing" value="1" checked="checked"> Tak
@@ -131,64 +129,48 @@
                             </label>
                         </div>
                     </div>
-                </div>
-                <!-- /.box-body -->
+                    <h4>Promocja:</h4>
+                    <div class="form-group">
+                        <label for="discounted-price" class="col-sm-9">Aktualna cena produktu w promocji:</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="discounted-price" name="discounted-price" value="0"
+                                   step=".01" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-margin" class="col-sm-3">Marża (w %):</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="custom-margin" name="custom-margin" value="0" step=".01">
+                        </div>
+                        <label for="avg-buy-price" class="col-sm-3">Cena zakupu:</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="avg-buy-price" name="avg-buy-price" value="0" disabled>
+                        </div>
+                    </div>
+                    <h4>Rabaty:</h4>
+                    <div class="form-group">
+                        <input type="number" id="value-discount" class="col-sm-3">
+                        <label class="col-sm-6">% rabatu od kwoty</label>
+                        <input type="number" id="vd-target" class="col-sm-3">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="amount-discount" class="col-sm-3">
+                        <label class="col-sm-6">% rabatu dla ilości</label>
+                        <input type="number" id="ad-target" class="col-sm-3">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="amount-discount_2" class="col-sm-3">
+                        <label class="col-sm-6">% rabatu dla ilości</label>
+                        <input type="number" id="ad-target_2" class="col-sm-3">
+                    </div>
+                    <button type="submit" class="btn btn-info pull-right">Zapisz</button>
+                    <!-- /.box-body -->
+                    <!-- /.box-footer -->
+                </form>
+            </div>
 
-                <button type="submit" class="btn btn-info pull-right">Zapisz</button>
-                <!-- /.box-footer -->
-            </form>
+
             {{--RABATY--}}
-            <h4>Rabaty</h4>
-            <form class="form-horizontal" id="product-discount">
-                <div class="box-body">
-                    <div class="form-group">
-                        <input type="number" class="col-sm-2" >
-                        <label class="col-sm-4">% rabatu od kwoty</label>
-                        <input type="number" class="col-sm-2">
-                        <div class="col-sm-1"></div>
-                        <div class="form-group radio col-sm-3">
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned1" value="1" checked="checked"> Tak
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned0" value="0"> Nie
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="col-sm-2" >
-                        <label class="col-sm-4">% rabatu dla ilości</label>
-                        <input type="number" class="col-sm-2">
-                        <div class="col-sm-1"></div>
-                        <div class="form-group radio col-sm-3">
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned1" value="1" checked="checked"> Tak
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned0" value="0"> Nie
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="col-sm-2" >
-                        <label class="col-sm-4">% rabatu dla ilości</label>
-                        <input type="number" class="col-sm-2">
-                        <div class="col-sm-1"></div>
-                        <div class="form-group radio col-sm-3">
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned1" value="1" checked="checked"> Tak
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="assigned" id="assigned0" value="0"> Nie
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-
-                <button type="submit" class="btn btn-info pull-right">Zapisz</button>
-                <!-- /.box-footer -->
-            </form>
         </div>
     </div>
 @endsection
