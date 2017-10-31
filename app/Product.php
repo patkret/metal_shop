@@ -10,4 +10,13 @@ class Product extends Model
     ];
 
     public $timestamps = false;
+
+    public function groups(){
+
+        return $this->belongsToMany(Group::class);
+    }
+
+    public function productsGroups(){
+        return $this->groups->pluck('name', 'id')->toArray();
+    }
 }

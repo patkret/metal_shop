@@ -4,38 +4,39 @@ $( document ).ready(function() {
     function makeSortable() {
         $("ul.categories-rows")
             .sortable({
-                connectWith:'.categories-rows',
-                update: function(event, ui) {
+                connectWith: '.categories-rows',
+                update: function (event, ui) {
                     let $preceding = ui.item.prev().data('id') || 0;
                     let $following = ui.item.next().data('id') || 0;
                     let $category = ui.item.data('id');
                     $.get(window.location.origin + '/categories/move/' + $preceding + '/' + $category + '/' + $following, function (data) {
-                       console.log(data);
+                        console.log(data);
                     });
                 }
             })
             .disableSelection();
     }
+
     makeSortable();
 
     function getChildren(node) {
         let $category = $(node).closest('li');
         let $children = $category.children('ul'); //get children list if any
 
-        if($children.length) {
+        if ($children.length) {
             $children.toggle(); //if children list exists, toggle
         } else {
-            $.get(window.location.origin + '/categories/' + $category.data('id') + '/children', function(data) {
-                if(data.length) {
+            $.get(window.location.origin + '/categories/' + $category.data('id') + '/children', function (data) {
+                if (data.length) {
                     let $ul = '<ul class="list-group containers categories-rows"></ul>';
                     $category.append($ul);
 
-                    $.each(data, function(i, el) {
+                    $.each(data, function (i, el) {
                         $item = '<li class="list-group-item categories-rows" data-id="' + el.id + '">' +
                             '<span class="folder"><i class="fa fa-folder"></i></span>' +
                             '<span>[# ' + el.id + '] </span>' +
                             '<span class="box-title">' + el.name + '</span>' +
-                            '<div class="pull-right">'+
+                            '<div class="pull-right">' +
                             '<a class="btn btn-sm" href="#"><i class="fa fa-level-down fa-2x"></i></a>' +
                             '<a class="btn btn-sm" href="categories/edit/' + el.id + '"><i class="fa fa-pencil-square-o fa-2x"></i></a>' +
                             '<a class="btn btn-sm delete" href="categories/delete/' + el.id + '"><i class="fa fa-minus-square-o fa-2x"></i></a>' +
@@ -58,13 +59,13 @@ $( document ).ready(function() {
         }
     }
 
-    $('.folder').on('click', function(e) { //set listener on root categories
-      getChildren($(this));
+    $('.folder').on('click', function (e) { //set listener on root categories
+        getChildren($(this));
     });
 
     //alert before deleting a category
-    $('.delete').on('click', function(e) {
-       confirm('Usunięcie kategorii jest nieodwracalne. Kontynuować?') ? true : e.preventDefault();
+    $('.delete').on('click', function (e) {
+        confirm('Usunięcie kategorii jest nieodwracalne. Kontynuować?') ? true : e.preventDefault();
     });
 
     function enableAppending(node) {
@@ -75,13 +76,13 @@ $( document ).ready(function() {
 
         $parent.append($category);
 
-        $.get(window.location.origin + 'categories/' + $parentID + '/append/' + $categoryID, function(data) {
+        $.get(window.location.origin + 'categories/' + $parentID + '/append/' + $categoryID, function (data) {
             console.log(data);
         });
     }
 
     //append inside preceding category
-    $('.fa-level-down').on('click', function(e) {
+    $('.fa-level-down').on('click', function (e) {
         e.preventDefault();
         enableAppending($(this));
     });
@@ -93,37 +94,38 @@ $( document ).ready(function() {
 
         $(node).nextAll().remove(); //clear next selects
 
-        $.get(window.location.origin + '/categories/' + $(node).val() + '/children', function(data) {
-            if(data.length) {
+        $.get(window.location.origin + '/categories/' + $(node).val() + '/children', function (data) {
+            if (data.length) {
                 $(node).parent().append('<select class="form-control ancestor"><option value="">Bez rodzica</option></select>');
-                $.each(data, function(i, value) {
+                $.each(data, function (i, value) {
                     $(node).next('.ancestor').append('<option value="' + value.id + '">' + value.name + '</option>');
                 });
 
-                $(node).next('.ancestor').on('change', function(e) {
+                $(node).next('.ancestor').on('change', function (e) {
                     selectAncestors($(this));
                 });
             }
         });
     }
 
-    $('.ancestor').on('change', function(e) {
-       selectAncestors($(this));
+    $('.ancestor').on('change', function (e) {
+        selectAncestors($(this));
     });
 
 
 // // PRODUCTS
     function productsByPhrase(node, draw) {
         let assigned = $('input[name=assigned]:checked').val();
-        let available = $('#available')[0].checked ? 1 : 0;;
+        let available = $('#available')[0].checked ? 1 : 0;
+        ;
         let phrase = $('#search-box').val();
 
-        let searchQuery = '/products/by-phrase/' + phrase +'/' + assigned + '/' + available;
+        let searchQuery = '/products/by-phrase/' + phrase + '/' + assigned + '/' + available;
 
         $(node).find('tbody').html('');
         $.get(window.location.origin + searchQuery, function (data) {
-            if(data) {
-                $.each(data, function(i, product) {
+            if (data) {
+                $.each(data, function (i, product) {
                     let $row = draw(product);
                     $(node).find('tbody').append($row);
                 });

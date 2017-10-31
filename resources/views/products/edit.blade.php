@@ -121,6 +121,19 @@
                 </div>
             </div>
         </div>
+        {!! Form::label('group','Grupa') !!}
+
+        @foreach($groups as $group)
+
+            <div class="form-group">
+
+
+                <input name="group_id[{{$group->id}}]" value="{{$group->id}}" type="checkbox" {{isset($product_groups[$group->id]) ? 'checked' : ''}}>
+                {{$group->name}}
+
+            </div>
+
+        @endforeach
         {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
         {{Form::close()}}
     </div>

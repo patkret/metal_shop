@@ -12,4 +12,9 @@ class Category extends Model
     protected $fillable = ['id', 'name', 'parent_id', 'order', 'photo', 'logo', 'description', 'visible', 'pair', '_lft', '_rgt'];
 
     public $timestamps = false;
+
+    public function groups(){
+
+        return $this->belongsToMany(Group::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category as Category;
+use App\Group as Group;
 
 
 class CategoriesController extends Controller
@@ -17,12 +18,18 @@ class CategoriesController extends Controller
 
     public function create()
     {
+
         $topCategories = $this->roots();
-        return view('categories.create', compact('topCategories'));
+        return view('categories.create', compact('topCategories'),[
+            'groups' => Group::all(),
+
+        ]);
     }
 
     public function store(Request $request)
     {
+
+
         if ($request->file('logo')) {
             $logo = str_random(20).'.'.$request->file('logo')->getClientOriginalExtension();
             $request->file('logo')->move(public_path() . '/images/logo/', $logo);
@@ -36,13 +43,18 @@ class CategoriesController extends Controller
         }
 
         if($request->parent != 0) {
-            Category::create($request->all(), Category::find($request->parent));
+
+            $category = Category::create($request->all(), Category::find($request->parent));
         } else {
-            Category::create($request->all());
+            $category = Category::create($request->all());
         }
 
+        $category->groups()->attach($request->group_id);
+
         $topCategories = $this->roots();
-        return view('categories.index', compact('topCategories'));
+
+
+        return redirect(route('categories.index', compact('topCategories')));
     }
 
     public function show(Category $category)
@@ -52,6 +64,7 @@ class CategoriesController extends Controller
 
     public function edit(Category $category)
     {
+        $categoryBelongsToGroup= Category::with('groups')->find($category->id)->groups->pluck('name', 'id')->toArray();
         $ancestors = Category::whereAncestorOrSelf($category->id)->get();
 
         $ancestorLevels = [];
@@ -60,7 +73,11 @@ class CategoriesController extends Controller
             $ancestorLevels[] = $ancestor;
         }
 
-        return view('categories.edit', compact('category', 'ancestorLevels'));
+        return view('categories.edit', compact('category', 'ancestorLevels'), [
+            'groups' => Group::all(),
+            'category_groups' => $categoryBelongsToGroup
+
+        ]);
     }
 
     public function roots()
@@ -86,6 +103,22 @@ class CategoriesController extends Controller
         } else {
             $category->insertBeforeNode(Category::find($following));
         }
+    }
+
+    public function update(Request $request, Category $category){
+
+
+        $category->groups()->sync($request->group_id);
+        $category->update($request->all());
+
+        return redirect(route('categories.index'));
+    }
+
+    public function delete(Category $category)
+    {
+        $category->delete();
+
+        return redirect(route('categories.index'));
     }
 
 }

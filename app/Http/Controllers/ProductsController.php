@@ -6,8 +6,11 @@ use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Category as Category;
 use App\Product as Product;
+use App\Group as Group;
+
 
 class ProductsController extends Controller
 {
@@ -18,17 +21,27 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products= Product::orderBy('id','DESC')->paginate(50);
+        return view('products.index',[
+            'products'=> $products
+        ]);
     }
 
     public function create()
     {
-        return view('products.create');
+
+        return view('products.create', [
+            'groups' => Group::all()
+        ]);
     }
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $product = Product::create($request->all());
+        $product->save();
+        $product->groups()->attach($request->group_id);
+
+        return redirect(route('products.index'));
     }
 
     public function toggle(Product $product)
@@ -40,14 +53,24 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
+        $productBelongsToGroup= $product->productsGroups();
+
         $discountedPrice = $product->avg_buy_price + ($product->avg_buy_price * ($product->custom_margin/100));
         $discountedPrice = number_format($discountedPrice, 2);
-        return view('products.edit', compact('product', 'discountedPrice'));
+        return view('products.edit', compact('product', 'discountedPrice'),[
+            'groups' => Group::all(),
+            'product_groups' => $productBelongsToGroup
+        ]);
     }
 
     public function update(Request $request, Product $product)
     {
-        //
+
+        $product->groups()->sync($request->group_id);
+
+        $product->update($request->all());
+
+        return redirect(route('products.index'));
     }
 
     public function description()
@@ -58,10 +81,9 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {
-        return $product;
+
+      return $product;
     }
-
-
 
     public function price()
     {
@@ -125,7 +147,7 @@ class ProductsController extends Controller
                     ['id' => $id, 'category_id' => $request->parent]
                 );
             }           
-            
+
         }
 
         return $this->showByCategory($request->parent);

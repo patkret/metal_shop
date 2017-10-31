@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row box-body">
-        <h3>Edycja</h3>
+        <h3>Dodaj produkt</h3>
         {{Form::open(['action' => 'ProductsController@store'])}}
         <div class="row">
             <div class="form-group col-xs-8">
@@ -130,7 +130,20 @@
                 </div>
             </div>
         </div>
-        {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
-        {{Form::close()}}
+
+
+            <h4 class="col-md-12">Grupy</h4>
+                @foreach($groups as $group)
+
+                    <div class="form-group">
+                        <input name="group_id[{{$group->id}}]" value="{{$group->id}}" type="checkbox">
+                        {{$group->name}}
+                    </div>
+
+                @endforeach
+        <div class="col-md-12 text-center">
+            {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
+            {{Form::close()}}
+        </div>
     </div>
 @endsection

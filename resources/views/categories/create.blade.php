@@ -13,8 +13,8 @@
 </section>
 
 <section class="content">
-    <div class="row">
-      {{Form::open(['action' => 'CategoriesController@store', 'files' => true])}}
+
+      {{Form::open(['route' => 'categories.store', 'files' => true])}}
         <input type="hidden"  value="0" id="order" name="order">
         <!-- left column -->
         <div class="col-md-6">
@@ -24,34 +24,40 @@
                 {{Form::label('name', 'Nazwa:')}}
                 <input id="name" name="name" type="text" class="form-control" placeholder="Wpisz nazwę ...">
               </div>
+
               <div class="form-group">
                 {{Form::label('description', 'Opis:')}}
                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Wpisz opis ..."></textarea>
               </div>
+
               <div class="form-group">
-              <fieldset>
-                <div id="child-selects">
-                <input type="hidden"  value="0" id="parent" name="parent">
-                <select class="form-control ancestor">
-                  <option value="0">Bez rodzica</option>
-                    @foreach($topCategories as $topCategory)
-                        <option value="{{$topCategory->id}}">{{$topCategory->name}}</option>
-                    @endforeach
-                </select>
-                </div>
-              </fieldset>
+                <fieldset>
+                    <div id="child-selects">
+                        <input type="hidden"  value="0" id="parent" name="parent">
+                        <select class="form-control ancestor">
+                          <option value="0">Bez rodzica</option>
+                            @foreach($topCategories as $topCategory)
+                                <option value="{{$topCategory->id}}">{{$topCategory->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </fieldset>
               </div>
+
+                {!! Form::label('group','Grupa') !!}
+                    @foreach($groups as $group)
+                    <div class="form-group">
+                        <input name="group_id[{{$group->id}}]" value="{{$group->id}}" type="checkbox">
+                        {{$group->name}}
+                    </div>
+                    @endforeach
+
             </div>
-            <!-- </form> -->
           </div>
         </div>
-        <!--/.col (left) -->
-        <!-- right column -->
+
         <div class="col-md-6">
-          <!-- Horizontal Form -->
           <div class="box box-primary">
-            <!-- form start -->
-            <!-- <form role="form"> -->
             <div class="box-body">
               <div class="row">
                 {{--<div class="col-xs-4 form-group">--}}
@@ -66,8 +72,8 @@
                       <option value="0">Nie</option>
                     </select>
                   </div>
-
                 </div>
+
                 <div class="col-xs-4 form-group">
                   <div class="form-group">
                     {{Form::label('pair', 'Ma parę:')}}
@@ -76,18 +82,16 @@
                       <option value="0">Nie</option>
                     </select>
                   </div>
-
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-6 form-group">
 
+              </div>
+
+
+              <div class="row">
+
+                <div class="col-xs-6 form-group">
                   {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
                   {{Form::file('photo')}}
-
-
-
-
                 </div>
                 <div class="col-xs-6 form-group">
                   <img alt="" class="center-block img-responsive">
@@ -96,25 +100,26 @@
                 </div>
               </div>
             </div>
-            <!-- /.box-body -->
+             <!-- /.box-body -->
             <!-- </form> -->
           </div>
           <!-- /.box -->
         </div>
-        <!--/.col (right) -->
-        <div class="col-md-12 text-center">
-          {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
-        </div>
-        <!-- </div> -->
-      {{Form::close()}}
+
+    <div class="text-center">
+
+        {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
+        {{Form::close()}}
     </div>
+</section>
+
+
+
     <!-- /.row -->
     @if(session()->has('message'))
     <div class="alert alert-success">
         {{ session()->get('message') }}
     </div>
     @endif
-
-  </section>
 
 @endsection

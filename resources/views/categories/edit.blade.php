@@ -35,6 +35,24 @@
                         </fieldset>
                         {{--  /select items  --}}
                     </div>
+                    <div class="form-group">
+                    {!! Form::label('group','Grupa') !!}
+
+                    @foreach($groups as $group)
+
+                        <div class="form-group">
+
+                            {{--{!! Form::checkbox('group_id', $group->id, ['class'=>'form-control']) !!}--}}
+                            <input name="group_id[{{$group->id}}]" value="{{$group->id}}" type="checkbox" {{isset($category_groups[$group->id]) ? 'checked' : ''}}>
+
+                            {{$group->name}}
+
+                        </div>
+
+                    @endforeach
+                    </div>
+
+
                 </div>
                 <!-- </form> -->
             </div>
