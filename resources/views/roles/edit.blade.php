@@ -17,7 +17,11 @@
 
                 {!! Form::label('name', 'Podaj nową nazwę') !!}
                 {!! Form::text('name', $roles->name, ['class'=>'form-control']) !!}
-
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
                 <div class=" row col-lg-6">
                     {!! Form::label('module','Dostęp do modułów') !!}
 

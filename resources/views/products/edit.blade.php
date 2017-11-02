@@ -7,6 +7,11 @@
             <div class="form-group col-xs-9">
                 <label for="name">Nazwa:</label>
                 <input id="name" name="name" type="text" placeholder="Wpisz nazwę ..." class="form-control" value="{{$product->name}}">
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group col-xs-3">
                 <label for="visible">Widoczny:</label>
@@ -52,6 +57,7 @@
                         <input type="number" class="form-control" id="current-price" name="current-price" value="{{  $product->{$product->price_basis} }}"
                                step=".01" disabled>
                     </div>
+
                 </div>
                 <div class="form-group row">
                     <label for="price-basis" class="col-sm-9">Cena hurtowa czy detaliczna?</label>
@@ -86,6 +92,7 @@
                     <input type="number" id="value-discount" class="col-sm-3" value="{{$product->value_discount}}">
                     <label class="col-sm-6">% rabatu od kwoty</label>
                     <input type="number" id="vd-target" class="col-sm-3" value="{{$product->vd_target}}">
+
                 </div>`
                 <div class="form-group row">
                     <input type="number" id="amount-discount" class="col-sm-3" value="{{$product->amount_discount}}">
@@ -134,7 +141,9 @@
             </div>
 
         @endforeach
+        <div class="text-center">
         {{Form::submit('Zapisz', ['class' => 'btn btn-lg btn-primary'])}}
         {{Form::close()}}
+        </div>
     </div>
 @endsection

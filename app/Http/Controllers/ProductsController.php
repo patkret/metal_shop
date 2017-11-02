@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use App\Category as Category;
-use App\Product as Product;
-use App\Group as Group;
+use App\Http\Requests\StoreProduct;
+use App\Http\Requests\UpdateProduct;
+
+use App\Category;
+use App\Product;
+use App\Group;
+
 
 
 class ProductsController extends Controller
@@ -35,8 +37,9 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
+
         $product = Product::create($request->all());
         $product->save();
         $product->groups()->attach($request->group_id);
@@ -63,7 +66,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(UpdateProduct $request, Product $product)
     {
 
         $product->groups()->sync($request->group_id);

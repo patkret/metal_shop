@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use App\Http\Requests\UpdateUser;
 use App\User;
 use App\Group;
 use App\Role;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
 
 
 class UsersController extends Controller
@@ -44,7 +42,7 @@ class UsersController extends Controller
     }
 
 
-    public function update(Request $request, User $users){
+    public function update(UpdateUser $request, User $users){
 
 
         $users->groups()->sync($request->group_id);

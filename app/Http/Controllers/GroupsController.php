@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Group as Group;
-use App\Category as Category;
+use App\Group;
+use App\Category;
+use App\Http\Requests\StoreGroup;
+use App\Http\Requests\UpdateGroup;
 
 class GroupsController extends Controller
 {
@@ -27,7 +28,7 @@ class GroupsController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StoreGroup $request)
     {
 
         Group::create($request->all());
@@ -43,9 +44,8 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Group $groups)
+    public function update(UpdateGroup $request, Group $groups)
     {
-
         $groups->update($request->all());
 
         return redirect(route('groups.index'));

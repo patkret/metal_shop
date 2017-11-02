@@ -23,24 +23,22 @@ class CheckRole
 
 
         $modules = $request->user()->getModules();
-        $actionName = $request->route()->getAction()['name'];
 
-//        $controller = explode('@',$request->route()->getAction()['controller']);
-//
-//        $exploded = explode('\\',$controller[0]);
-//
-//        $controllerFinal = strtolower(str_replace('Controller', '', $exploded[count($exploded)-1]));
+        $controller = explode('@',$request->route()->getAction()['controller']);
 
-            foreach ($modules as $module) {
+        $exploded = explode('\\',$controller[0]);
 
-                if ($module->path === $actionName) {
-                    return $next($request);
-                }
+        $controllerFinal = strtolower(str_replace('Controller', '', $exploded[count($exploded)-1]));
 
+        foreach ($modules as $module) {
+
+            if ($module->path === $controllerFinal) {
+
+                return $next($request);
             }
+
+        }
         return redirect()->back();
-
-
 
     }
 }

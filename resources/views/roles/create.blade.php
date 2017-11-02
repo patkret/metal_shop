@@ -24,6 +24,11 @@
                         <br>
                         <input id="name" name="name" type="text" class="form-control input-lg" placeholder="Nazwa">
                         <br>
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
                     <div class="col-lg-10">

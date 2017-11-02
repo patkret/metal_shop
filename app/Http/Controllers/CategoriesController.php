@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Category as Category;
-use App\Group as Group;
+use App\Http\Requests\StoreCategory;
+use App\Http\Requests\UpdateCategory;
+use App\Category;
+use App\Group;
+
 
 
 class CategoriesController extends Controller
@@ -26,9 +28,8 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
-
 
         if ($request->file('logo')) {
             $logo = str_random(20).'.'.$request->file('logo')->getClientOriginalExtension();
@@ -105,7 +106,7 @@ class CategoriesController extends Controller
         }
     }
 
-    public function update(Request $request, Category $category){
+    public function update(UpdateCategory $request, Category $category){
 
 
         $category->groups()->sync($request->group_id);

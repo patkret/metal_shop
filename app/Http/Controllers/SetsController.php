@@ -39,7 +39,10 @@ class SetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $set = Set::create($request->all());
+//        $set->save();
+//        $set->()->attach($request->group_id);
+//        return redirect(view('sets.index'));
     }
 
     /**

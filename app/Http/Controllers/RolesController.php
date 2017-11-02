@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreRole;
+use App\Http\Requests\UpdateRole;
 use App\Role;
 use App\Module;
+
 
 class RolesController extends Controller
 {
@@ -26,7 +28,7 @@ class RolesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRole $request)
     {
 
         $role = Role::create($request->all());
@@ -48,7 +50,7 @@ class RolesController extends Controller
         ]);
     }
 
-    public function update(Request $request, Role $roles)
+    public function update(UpdateRole $request, Role $roles)
     {
 
         $roles->modules()->sync($request->module_id);

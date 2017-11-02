@@ -8341,3 +8341,8 @@ button.close {
 .visible {
   color: #72afd2;
 }
+
+.help-block{
+  color: red;
+  font-size: 2 rem;
+}

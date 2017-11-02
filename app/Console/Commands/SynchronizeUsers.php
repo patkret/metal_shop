@@ -44,22 +44,31 @@ class SynchronizeUsers extends Command
     {
         $old_users = DB::connection('mysql_hurtmet')->select('SELECT * FROM `users`');
 
-        foreach ($old_users as $record) {
-            DB::table('users')->insert([
-                'id' => $record->id,
-                'email' => $record->mail->unique(),
-                'first_name' => $record->imie,
-                'last_name' => $record->nazwisko,
-                'password' => $record->haslo,
-                'company_name' => $record->firma,
-                'street' => $record->ulica,
-                'city' => $record->miasto,
-                'zip_code' => $record->kod,
-                'phone_no' => $record->tel_kom,
-                'nip' => $record->nip,
-                'created_at' => $record->data_rej
 
-            ]);
+
+        foreach ($old_users as $record) {
+
+            $user_email = User::where('email', '=', $record->mail)->first();
+
+            if ($user_email === null) {
+                DB::table('users')->insert([
+                    'id' => $record->id,
+                    'email' => $record->mail,
+                    'first_name' => $record->imie,
+                    'last_name' => $record->nazwisko,
+                    'password' => $record->haslo,
+                    'company_name' => $record->firma,
+                    'street' => $record->ulica,
+                    'city' => $record->miasto,
+                    'zip_code' => $record->kod,
+                    'phone_no' => $record->tel_kom,
+                    'nip' => $record->nip,
+                    'created_at' => $record->data_rej
+
+                ]);
+            }
+
+
         }
     }
 }

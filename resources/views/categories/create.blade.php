@@ -21,8 +21,14 @@
           <div class="box box-primary">
             <div class="box-body">
               <div class="form-group">
-                {{Form::label('name', 'Nazwa:')}}
-                <input id="name" name="name" type="text" class="form-control" placeholder="Wpisz nazwę ...">
+                  {{Form::label('name', 'Nazwa:')}}
+                  <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" placeholder="Wpisz nazwę ...">
+                  @if ($errors->has('name'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                      </span>
+                  @endif
+
               </div>
 
               <div class="form-group">

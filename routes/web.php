@@ -16,9 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'categories'
+    'middleware' => 'check_role'
 ], function () {
     Route::get('/categories', 'CategoriesController@index')->name('categories.index');
     Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
@@ -33,13 +31,10 @@ Route::group([
     Route::delete('/categories/delete/{category}', 'CategoriesController@delete')->name('categories.delete');
     Route::get('/categories/{parent}/append/{category}', 'CategoriesController@append')->name('categories.append');
     Route::get('/categories/move/{preceding}/{category}/{following}', 'CategoriesController@move')->name('categories.move');
-});
+
 // products
-Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'products'
-], function () {
+
+
     Route::get('/products', 'ProductsController@index')->name('products.index');
     Route::get('/products/create', 'ProductsController@create')->name('products.create');
     Route::post('/products', 'ProductsController@store')->name('products.store');
@@ -61,55 +56,38 @@ Route::group([
     Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
 
     Route::get('/products/description', 'ProductsController@description')->name('products.description');
-});
+
 
 // SETS
-Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'sets'
-], function () {
+
     Route::get('/sets', 'SetsController@index')->name('sets.index');
     Route::get('/sets/create', 'SetsController@create')->name('sets.create');
     Route::get('/sets/{set}/edit', 'SetsController@edit')->name('sets.edit');
     Route::get('/sets/{set}/delete', 'SetsController@destroy')->name('sets.destroy');
     Route::post('/sets/{set}/update', 'SetsController@update')->name('sets.update');
     Route::post('/sets/store', 'SetsController@store')->name('sets.store');
-});
+
 
 // GROUPS
-Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'groups'
-], function () {
+
     Route::get('/groups', 'GroupsController@index')->name('groups.index');
     Route::get('/groups/create', 'GroupsController@create')->name('groups.create');
     Route::post('/groups', 'GroupsController@store')->name('groups.store');
     Route::get('/groups/{groups}/edit', 'GroupsController@edit')->name('groups.edit');
     Route::put('/groups/{groups}', 'GroupsController@update')->name('groups.update');
     Route::delete('/groups/{groups}', 'GroupsController@destroy')->name('groups.destroy');
-});
+
 
 // USERS
-Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'users'
-], function () {
+
     Route::get('/users', 'UsersController@index')->name('users.index');
     Route::get('/users/{users}/edit', 'UsersController@edit')->name('users.edit');
     Route::put('/users/{users}', 'UsersController@update')->name('users.update');
     Route::delete('/users/{users}', 'UsersController@destroy')->name('users.destroy');
 
     Route::get('/home', 'HomeController@index')->name('home');
-});
-//ROLES
-Route::group([
-    'middleware' => 'check_role',
-    'roles' => ['administrator', 'manager'],
-    'name' => 'roles'
-], function () {
+
+
     Route::get('/roles', 'RolesController@index')->name('roles.index');
     Route::get('/roles/create', 'RolesController@create')->name('roles.create');
     Route::post('/roles', 'RolesController@store')->name('roles.store');
