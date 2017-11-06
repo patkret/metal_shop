@@ -94,6 +94,23 @@ Route::group([
     Route::get('/roles/{roles}/edit', 'RolesController@edit')->name('roles.edit');
     Route::put('/roles/{roles}', 'RolesController@update')->name('roles.update');
     Route::delete('/roles/{roles}', 'RolesController@destroy')->name('roles.destroy');
+
+//STATUS
+
+    Route::get('/status', 'StatusController@index')->name('status.index');
+    Route::get('/status/create', 'StatusController@create')->name('status.create');
+    Route::post('/status', 'StatusController@store')->name('status.store');
+    Route::get('/status/{status}/edit', 'StatusController@edit')->name('status.edit');
+    Route::put('/status/{status}', 'StatusController@update')->name('status.update');
+    Route::delete('/status/{status}', 'StatusController@destroy')->name('status.destroy');
+
+//ORDERS
+
+    Route::get('/orders', 'OrdersController@index')->name('orders.index');
+    Route::get('/orders/create', 'OrdersController@create')->name('orders.create');
+    Route::post('/orders/find-users', 'OrdersController@findUsers')->name('orders.findUsers');
+    Route::post('/orders/find-products', 'OrdersController@findProducts')->name('orders.findProducts');
+
 });
 
 

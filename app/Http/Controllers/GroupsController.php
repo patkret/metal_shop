@@ -22,9 +22,7 @@ class GroupsController extends Controller
 
     public function create()
     {
-        $topCategories = Category::whereIsRoot()->defaultOrder()->get();
-
-        return view('groups.create', compact('topCategories'));
+        return view('groups.create');
 
     }
 

@@ -41,5 +41,10 @@ class ModulesSeeder extends Seeder
             'path' => "roles",
             'name' => "role"
         ]);
+
+        Module::insert([
+            'path' => "status",
+            'name' => "statusy zamówień"
+        ]);
     }
 }

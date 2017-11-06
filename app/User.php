@@ -40,6 +40,11 @@ class User extends Authenticatable
 
     }
 
+    public function orders(){
+
+        return $this->hasMany(Order::class);
+    }
+
     public function getGroups(){
 
         return $this->groups->pluck('name', 'id')->toArray();
@@ -48,6 +53,8 @@ class User extends Authenticatable
     public function getRoles(){
         return $this->roles->pluck('name', 'id')->toArray();
     }
+
+
 
 
     public function getModules()
