@@ -47,15 +47,15 @@
 
 
                             <td>
-                                <div class="pull-right">
+                                {{--<div class="pull-right">--}}
                                     <a class="btn btn-sm" href="{!! route('users.edit', ['users'=> $user->id]) !!}">
                                         <i class="fa fa-pencil-square-o fa-2x"></i>
                                     </a>
-                                </div>
+                                {{--</div>--}}
                             </td>
 
                             <td>
-                                <div class="pull-right">
+                                {{--<div class="pull-right">--}}
 
                                     {!!Form::model($user, ['route' => ['users.destroy', $user], 'method' => 'DELETE'])!!}
 
@@ -64,7 +64,7 @@
                                     </button>
 
                                     {!!Form::close() !!}
-                                </div>
+                                {{--</div>--}}
                             </td>
                         </tr>
                     @endforeach
