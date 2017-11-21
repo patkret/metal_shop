@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<assign-products></assign-products>
+    <pick-category></pick-category>
+    <assign-products-category></assign-products-category>
 
 @endsection

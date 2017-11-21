@@ -10,8 +10,7 @@ Homestead.yaml
 npm-debug.log
 .env
 composer.lock
-
-
+yarn.lock
 
 # Created by https://www.gitignore.io/api/laravel
 

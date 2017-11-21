@@ -18,13 +18,14 @@ class ProductCategoriesController extends Controller
     {
 
         $products = DB::select('SELECT `id`, `name` FROM `products` WHERE `id` IN (SELECT `id` FROM `product_category` WHERE `category_id` = ' . $id . ')');
+
         return $products;
     }
 
     public function findProducts(Request $request)
     {
         return Product::where('name', 'like', '%' . $request->product_name . '%')
-//            ->limit(15)
+            ->limit(30)
             ->get();
     }
 
