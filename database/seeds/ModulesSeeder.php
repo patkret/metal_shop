@@ -48,7 +48,7 @@ class ModulesSeeder extends Seeder
         ]);
 
         Module::insert([
-            'path' => "product-categories",
+            'path' => "productcategories",
             'name' => "przypisywanie produktów"
         ]);
     }
