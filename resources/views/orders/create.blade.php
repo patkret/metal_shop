@@ -8,6 +8,9 @@
             <li class="active">Stwórz</li>
         </ol>
     </section>
+
+    {{Form::open(['action' => 'OrdersController@store',])}}
+
     <div class="box-header with-border">
         <h3 class="box-title">Dodaj zamówienie</h3>
     </div>
@@ -21,8 +24,31 @@
             </div>
 
             <Clients></Clients>
+            @if ($errors->has('user_id'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('user_id') }}</strong>
+                    </span>
+            @endif
             <Products></Products>
+            @if ($errors->has('user_id'))
+                <span class="help-block">
+                        <strong>{{ $errors->first('user_id') }}</strong>
+                    </span>
+            @endif
         </div>
-    </section>
+        <div class="form-group">
+            <label for="Status">Status zamówienia</label>
+            <select name="status" class="form-control">
+                @foreach($status as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+
+</div>
+
+</section>
+<button class="btn text-center">Dodaj</button>
+
+{{Form::close()}}
 
 @endsection

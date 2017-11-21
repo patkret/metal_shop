@@ -19,10 +19,10 @@ class AlterTableUser extends Migration
                 $table->string('street');
                 $table->string('city');
                 $table->string('zip_code');
-                $table->integer('number_of_orders');
+                $table->integer('number_of_orders')->nullable();
                 $table->integer('status');
-                $table->text('company_name');
-                $table->string('nip');
+                $table->text('company_name')->nullable();
+                $table->string('nip')->nullable();
                 $table->string('phone_no');
 
             });

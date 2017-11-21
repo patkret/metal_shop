@@ -117,7 +117,7 @@ $( document ).ready(function() {
     function productsByPhrase(node, draw) {
         let assigned = $('input[name=assigned]:checked').val();
         let available = $('#available')[0].checked ? 1 : 0;
-        ;
+
         let phrase = $('#search-box').val();
 
         let searchQuery = '/products/by-phrase/' + phrase + '/' + assigned + '/' + available;

@@ -9,7 +9,7 @@
 
                 <ul class="list-group">
                     <li class="list-group-item" v-for="user in users"> {{user.first_name}} {{user.last_name}}
-                        <button @click="pickUser(user)" style="background: none; border: none;">
+                        <button type="button" @click="pickUser(user)" style="background: none; border: none;">
                             <i @click="clearList(users)" class="fa fa-plus-square-o" aria-hidden="true"></i>
                         </button>
                     </li>
@@ -29,7 +29,7 @@
                         Email: {{client.email}}
                     </address>
                 </div>
-                <input name="clients[]" v-bind:value="client.id" type="hidden"><button @click="deleteClient(client.id)" style="background: none; border: none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <input name="clients[]" v-bind:value="client.id" type="hidden"><button type="button" @click="deleteClient(client.id)" style="background: none; border: none;"><i class="fa fa-minus" aria-hidden="true"></i></button>
             </div>
          </div>
     </div>
@@ -38,12 +38,13 @@
 
 
     export default {
+        props: ['user_client'],
         data() {
             return {
                 pickedUser: '',
                 user_name: '',
                 users: [],
-                userId:0,
+                userId:'',
                 clients: []
             }
         },
@@ -68,15 +69,17 @@
                 this.userId = user.id;
                 this.clients = [];
                 this.clients.push(user);
-            },
-            removeUser() {
-                this.pickedUser = '';
-                this.userId = 0;
+
             },
             clearList(){
                 this.users = [];
             }
 
+        },
+        created: function() {
+            if(this.user_client) {
+                this.pickUser(this.user_client);
+            }
         }
     }
 </script>

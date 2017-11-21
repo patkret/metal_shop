@@ -34,6 +34,7 @@ class RolesController extends Controller
         $role = Role::create($request->all());
         $role->modules()->attach($request->module_id);
 
+
         return redirect(route('roles.index'));
     }
 

@@ -20,12 +20,13 @@ class CategoriesController extends Controller
 
     public function create()
     {
-
         $topCategories = $this->roots();
         return view('categories.create', compact('topCategories'),[
             'groups' => Group::all(),
 
         ]);
+
+
     }
 
     public function store(StoreCategory $request)

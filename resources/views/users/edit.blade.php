@@ -61,7 +61,7 @@
                         <div class="input-group">
 
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            {!! Form::text('pone_no', $users->phone_no, ['class'=>'form-control']) !!}
+                            {!! Form::text('phone_no', $users->phone_no, ['class'=>'form-control']) !!}
                         </div>
                         @if ($errors->has('phone_no'))
                             <span class="help-block">

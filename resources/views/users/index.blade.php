@@ -6,9 +6,10 @@
             <li><a href="#"><i class="fa fa-dashboard"></i>Użytkownicy</a></li>
             <li class="active">Indeks</li>
         </ul>
-    </section>
 
-    <h3 class="box-title">Uzytkownicy</h3>
+    </section>
+    <h3 class="box-title">Użytkownicy</h3>
+    <a class="btn btn-primary btn-lg" href="{{route('users.create')}}" type="button">Dodaj użytkownika</a>
     <div class="box">
         <div class="box-header">
             <!-- /.box-header -->

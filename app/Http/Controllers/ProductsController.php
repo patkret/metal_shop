@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateProduct;
 use App\Category;
 use App\Product;
 use App\Group;
+use Illuminate\Http\Request;
 
 
 
@@ -40,9 +41,11 @@ class ProductsController extends Controller
     public function store(StoreProduct $request)
     {
 
+
         $product = Product::create($request->all());
         $product->save();
         $product->groups()->attach($request->group_id);
+
 
         return redirect(route('products.index'));
     }
@@ -62,7 +65,8 @@ class ProductsController extends Controller
         $discountedPrice = number_format($discountedPrice, 2);
         return view('products.edit', compact('product', 'discountedPrice'),[
             'groups' => Group::all(),
-            'product_groups' => $productBelongsToGroup
+            'product_groups' => $productBelongsToGroup,
+            'product' => $product
         ]);
     }
 
@@ -98,7 +102,7 @@ class ProductsController extends Controller
     public function showByCategory($id)
     {
 
-        $products = DB::select('SELECT * FROM `products` WHERE `id` IN (SELECT `id` FROM `product_has_categories` WHERE `category_id` = ' . $id . ')');
+        $products = DB::select('SELECT * FROM `products` WHERE `id` IN (SELECT `id` FROM `product_category` WHERE `category_id` = ' . $id . ')');
         return $products;
     }
 
@@ -110,7 +114,7 @@ class ProductsController extends Controller
             $query = $query."(`name` LIKE '%". $phrase ."%' OR `code` LIKE '%". $phrase ."%' OR `id` = '". $phrase ."')";    
         }
         if ($assigned) {
-            $query = $query."AND `id` ". $assigned ." (SELECT `id` FROM `product_has_categories`)";
+            $query = $query."AND `id` ". $assigned ." (SELECT `id` FROM `product_category`)";
         }
         if ($available) {
             $query = $query."AND (`stock_10` > 0 OR `stock_20` > 0)";
@@ -126,27 +130,27 @@ class ProductsController extends Controller
         echo $available;
         echo $category;
         echo $query;
-        dd();
+
     }
 
-    public function assign()
-    {
-        $topCategories = Category::whereIsRoot()->defaultOrder()->get();
-        return view('products.assign', compact('topCategories'));
-    }
+//    public function assign()
+//    {
+//        $topCategories = Category::whereIsRoot()->defaultOrder()->get();
+//        return view('products.assign', compact('topCategories'));
+//    }
 
     public function assignProduct(Request $request)
     {
 
         foreach ($request->selected as $id) {
-            $check = DB::table('product_has_categories')->where([
+            $check = DB::table('product_category')->where([
                 ['id', '=', $id],
                 ['category_id', '=', $request->parent]
                 ])->get();
 
             if(!count($check)) {
 
-                DB::table('product_has_categories')->insert(
+                DB::table('product_category')->insert(
                     ['id' => $id, 'category_id' => $request->parent]
                 );
             }           
@@ -160,7 +164,7 @@ class ProductsController extends Controller
     {
 
         foreach ($request->selected as $id) {
-            DB::table('product_has_categories')->where([
+            DB::table('product_category')->where([
                 ['id', '=', $id],
                 ['category_id', '=', $request->parent]
                 ])->delete();            

@@ -41,21 +41,24 @@ Route::group([
     Route::get('/products/toggle/{product}', 'ProductsController@toggle')->name('products.toggle');
     Route::get('/products/show/{product}', 'ProductsController@show')->name('products.show');
     Route::get('/products/edit/{product}', 'ProductsController@edit')->name('products.edit');
-    Route::post('/products/update/{product}', 'ProductsController@update')->name('products.update');
+    Route::put('/products/update/{product}', 'ProductsController@update')->name('products.update');
+
+//product categories
+    Route::get('/productcategories', 'ProductCategoriesController@index')->name('productcategories.index');
+    Route::post('/productcategories/find-products', 'ProductCategoriesController@findProducts')->name('productcategories.findProducts');
+    Route::post('products/find-category', 'ProductCategoriesController@findCategory')->name('productcategories.findCategory');
+    Route::get('/products/by-category/{id}', 'ProductCategoriesController@showByCategory')->name('products.showByCategory');
 
 
-    Route::get('/products/by-category/{id}', 'ProductsController@showByCategory')->name('products.showByCategory');
-    Route::get('/products/by-phrase/{phrase}/{assigned}/{available}', 'ProductsController@showByPhrase')->name('products.showByPhrase');
-
-    Route::get('/products/assign', 'ProductsController@assign')->name('products.assign');
-    Route::post('/products/assign', 'ProductsController@assignProduct')->name('products.assignProduct');
-    Route::post('/products/unassign', 'ProductsController@unassignProduct')->name('products.unassignProduct');
-    Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
-
-    Route::get('/products/price', 'ProductsController@price')->name('products.price');
-    Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
-
-    Route::get('/products/description', 'ProductsController@description')->name('products.description');
+//    Route::post('/productcategories/showByPhrase/{assigned}/{available}', 'ProductCategoriesController@showByPhrase')->name('productcategories.showByPhrase');
+//    Route::get('/product-categories/assign', 'ProductsController@assign')->name('products.assign');
+//    /{assigned}/{available}
+//    Route::post('/products/assign', 'ProductsController@assignProduct')->name('products.assignProduct');
+//    Route::post('/products/unassign', 'ProductsController@unassignProduct')->name('products.unassignProduct');
+//   Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
+//    Route::get('/products/price', 'ProductsController@price')->name('products.price');
+//    Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
+//    Route::get('/products/description', 'ProductsController@description')->name('products.description');
 
 
 // SETS
@@ -84,10 +87,13 @@ Route::group([
     Route::get('/users/{users}/edit', 'UsersController@edit')->name('users.edit');
     Route::put('/users/{users}', 'UsersController@update')->name('users.update');
     Route::delete('/users/{users}', 'UsersController@destroy')->name('users.destroy');
+    Route::get('/users/create', 'UsersController@create')->name('users.create');
+    Route::post('/users/create', 'UsersController@store')->name('users.store');
+
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-
+//ROLES
     Route::get('/roles', 'RolesController@index')->name('roles.index');
     Route::get('/roles/create', 'RolesController@create')->name('roles.create');
     Route::post('/roles', 'RolesController@store')->name('roles.store');
@@ -108,9 +114,17 @@ Route::group([
 
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/create', 'OrdersController@create')->name('orders.create');
+    Route::get('/orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
     Route::post('/orders/find-users', 'OrdersController@findUsers')->name('orders.findUsers');
     Route::post('/orders/find-products', 'OrdersController@findProducts')->name('orders.findProducts');
+    Route::post('/orders', 'OrdersController@store')->name('orders.store');
+    Route::put('/orders/{order}', 'OrdersController@update')->name('orders.update');
+    Route::delete('/orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
+    Route::delete('/orders/delete-item/{order}', 'OrdersController@deleteItem')->name('orders.destroy');
+});
 
+Route::get('/main', function () {
+    return view('main.index');
 });
 
 

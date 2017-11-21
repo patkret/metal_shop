@@ -96,7 +96,7 @@ class SynchronizeProducts extends Command
         $productCategories = DB::connection('mysql_hurtmet')->select('SELECT * FROM produkt_kat ORDER BY produkt_kat.indeks ASC');
 
         foreach ($productCategories as $record) {
-            DB::table('product_has_categories')->insert([
+            DB::table('product_category')->insert([
                     'id' => $tempCategories[$record->indeks],
                     'category_id' => $record->id_kat
                 ]

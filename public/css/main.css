@@ -1,0 +1,179 @@
+.wrapper{
+    display: grid;
+    grid-template-rows: 122px 60px 700px 400px;
+    grid-template-areas:
+    "shop-header"
+    "info-bar"
+    "app-content"
+    "footer";
+    color: #cccccc;
+}
+.shop-header{
+    grid-area: shop-header;
+}
+.shop-header{
+    background-color: #2f2f2f;
+    height: 122px;
+    display: grid;
+    grid-template-rows: 60px 1px 60px 1px;
+    grid-template-columns: 5% 20% 45% 25% 5%;
+    grid-template-areas:
+    ". . . auth-panel ."
+    "line line line line line"
+    ". logo nav-categories search-bar .";
+    position: relative;
+}
+
+.line{
+    grid-area: line;
+    height: 1px;
+    background-color: #4c4c4c;
+}
+
+.auth-panel{
+    grid-area: auth-panel;
+    padding-top: 10px;
+    padding-left: 10%;
+
+}
+
+.auth-panel a{
+    text-decoration: none;
+    color: #cccccc;
+}
+
+ul > li{
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.logo{
+    grid-area: logo;
+}
+
+.logo img{
+    padding-right: 40px;
+    margin-top: 10px;
+}
+
+.nav-categories{
+    grid-area: nav-categories;
+    /*margin-left: 2%;*/
+    margin-top: 10px;
+
+
+}
+.search-bar{
+    grid-area: search-bar;
+    padding-left: 10%;
+    margin-top: 10px;
+}
+.nav-categories a{
+    text-decoration: none;
+    color: #cccccc;
+    margin-left: 20px;
+}
+
+.info-bar {
+    grid-area: info-bar;
+}
+.info-bar{
+    background-color: #191919;
+    height: 60px;
+    position:relative;
+}
+
+.arrow-left{
+    position:absolute;
+    left: 35%;
+}
+
+.arrow-right{
+    position:absolute;
+    right: 35%;
+}
+
+.info-bar-content{
+    position:absolute;
+
+}
+.info-bar-icon{
+    position: absolute;
+    left: 38%;
+}
+.info-bar-text{
+    position:absolute;
+    left: 40%;
+    right: 35%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.app-content{
+    grid-area: app-content;
+    display: grid;
+    grid-template-rows: 350px 250px;
+    grid-template-areas:
+        "categories"
+        "info-panel";
+}
+.categories{
+    background-color: #2f2f2f;
+
+}
+.categories img{
+    float: left;
+    width: 475px; /*rozmiar do zmiany po dodaniu plików z bazy */
+    height: 350px;
+}
+.info-panel{
+    grid-area: info-panel;
+}
+.info-panel{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+            " . . . ."
+            " icon-percent first-info second-info . ";
+    background-color: #2e3436;
+}
+.info-panel strong{
+    font-size: 120%;
+}
+
+.content-wrapper{
+    grid-area: content-wrapper;
+}
+
+.first-info{
+    grid-area: first-info;
+    position: relative;
+}
+
+.second-info{
+    grid-area: second-info;
+}
+.icon-percent{
+    grid-area: icon-percent;
+    position: relative;
+}
+.icon-percent img{
+    position: absolute;
+    right: 4%;
+}
+.icon-question img{
+    position: absolute;
+    right: 4%;
+}
+
+
+footer{
+    grid-area: footer;
+}
+
+
+

@@ -43,3 +43,5 @@ class CreateUserGroupTable extends Migration
         //
     }
 }
+
+//2017_08_03_105533

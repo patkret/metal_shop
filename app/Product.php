@@ -17,6 +17,12 @@ class Product extends Model
     }
 
     public function productsGroups(){
+
         return $this->groups->pluck('name', 'id')->toArray();
+    }
+
+    public function category(){
+
+        return $this->belongsToMany(Category::class);
     }
 }
