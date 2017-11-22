@@ -40,7 +40,7 @@ ul{
 .auth-panel{
     grid-area: auth-panel;
     padding-top: 10px;
-    /*padding-left: 10%;*/
+    padding-left: 10%;
 }
 .auth-panel a{
     text-decoration: none;
@@ -137,8 +137,8 @@ ul{
 }
 .categories img{
     float: left;
-    width: 475px; /*rozmiar do zmiany po dodaniu plików z bazy */
-    height: 350px;
+    width: 25%; /*rozmiar do zmiany po dodaniu plików z bazy */
+    height: auto;
 }
 .info-panel{
     grid-area: info-panel;
@@ -201,7 +201,6 @@ ul{
     grid-area: footer-header;
 }
 
-
 .first-col{
     grid-area: first-col;
     line-height: 30px;
@@ -245,6 +244,21 @@ ul{
     float: right;
 }
 
+
+/*@media only screen and (max-width: 1455px) {*/
+    /*.shop-header{*/
+        /*background-color: #2f2f2f;*/
+        /*height: 122px;*/
+        /*display: grid;*/
+        /*grid-template-rows: 60px 1px 60px 1px;*/
+        /*grid-template-columns: 1% 18% 55% 25% 1%;*/
+        /*grid-template-areas:*/
+                /*". . . auth-panel ."*/
+                /*"line line line line line"*/
+                /*". logo nav-categories search-bar .";*/
+        /*position: relative;*/
+    /*}*/
+/*}*/
 
 
 
