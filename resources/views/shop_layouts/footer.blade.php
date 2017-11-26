@@ -2,7 +2,7 @@
     <div class="footer-header">
         <span>UZYSKAJ POMOC</span>
     </div>
-    {{--<div class="footer-info">--}}
+    <div class="footer-line"></div>
         <div class="first-col">
             <ul>
                 <li><a href="#">Status zamówienia</a></li>
@@ -20,6 +20,7 @@
         </div>
     {{--</div>--}}
     <div class="line"></div>
+    <div class="footer-line"></div>
     <div class="footer-credits">
         <span>&copy 2018 HURTMET.pl Wszystkie prawa zastrzeżone</span>
     </div>
