@@ -8,27 +8,13 @@
     </div>
 
     <div id="menuToggle">
-        <!--
-        A fake / hidden checkbox is used as click reciever,
-        so you can use the :checked selector on it.
-        -->
 
         <input title="menu" type="checkbox"/>
 
-        <!--
-        Some spans to act as a hamburger.
-
-        They are acting like a real hamburger,
-        not that McDonalds stuff.
-        -->
         <span></span>
         <span></span>
         <span></span>
 
-        <!--
-        Too bad the menu has to be inside of the button
-        but hey, it's pure CSS magic.
-        -->
         <ul id="menu">
             <li><a href="#">ELEMENTY ZŁĄCZNE</a></li>
             <li><a href="#">OSPRZĘT ŻEGLARSKI</a></li>
@@ -47,7 +33,7 @@
     </div>
     <div class="nav-categories">
         <ul>
-            <li><a href="#">ELEMENTY ZŁĄCZNE</a></li>
+            <li><a href="\category">ELEMENTY ZŁĄCZNE</a></li>
             <li><a href="#">OSPRZĘT ŻEGLARSKI</a></li>
             <li><a href="#">NARZĘDZIA</a></li>
             <li><a href="#">CHEMIA</a></li>

@@ -48,12 +48,11 @@ Route::group([
     Route::post('/productcategories/find-products', 'ProductCategoriesController@findProducts')->name('productcategories.findProducts');
     Route::post('products/find-category', 'ProductCategoriesController@findCategory')->name('productcategories.findCategory');
     Route::get('/products/by-category/{id}', 'ProductCategoriesController@showByCategory')->name('products.showByCategory');
-
+    Route::post('/products/assign', 'ProductsController@assignProduct')->name('products.assignProduct');
 
 //    Route::post('/productcategories/showByPhrase/{assigned}/{available}', 'ProductCategoriesController@showByPhrase')->name('productcategories.showByPhrase');
 //    Route::get('/product-categories/assign', 'ProductsController@assign')->name('products.assign');
 //    /{assigned}/{available}
-//    Route::post('/products/assign', 'ProductsController@assignProduct')->name('products.assignProduct');
 //    Route::post('/products/unassign', 'ProductsController@unassignProduct')->name('products.unassignProduct');
 //   Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
 //    Route::get('/products/price', 'ProductsController@price')->name('products.price');
@@ -125,6 +124,10 @@ Route::group([
 
 Route::get('/main', function () {
     return view('main.index');
+});
+
+Route::get('/category', function () {
+    return view('main.category');
 });
 
 

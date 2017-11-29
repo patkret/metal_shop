@@ -63,26 +63,26 @@ class ProductCategoriesController extends Controller
 //        return view('product_categories.index', compact('topCategories'));
 //    }
 //
-//    public function assignProduct(Request $request)
-//    {
-//
-//        foreach ($request->selected as $id) {
-//            $check = DB::table('product_category')->where([
-//                ['id', '=', $id],
-//                ['category_id', '=', $request->parent]
-//            ])->get();
-//
-//            if(!count($check)) {
-//
-//                DB::table('product_category')->insert(
-//                    ['id' => $id, 'category_id' => $request->category_id]
-//                );
-//            }
-//
-//        }
-//
-//        return $this->showByCategory($request->parent);
-//    }
+    public function assignProduct(Request $request)
+    {
+
+        foreach ($request->selected as $id) {
+            $check = DB::table('product_category')->where([
+                ['id', '=', $id],
+                ['category_id', '=', $request->parent]
+            ])->get();
+
+            if(!count($check)) {
+
+                DB::table('product_category')->insert(
+                    ['id' => $id, 'category_id' => $request->category_id]
+                );
+            }
+
+        }
+
+        return $this->showByCategory($request->parent);
+    }
 //
 //    public function unassignProduct(Request $request)
 //    {

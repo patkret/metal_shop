@@ -40,6 +40,8 @@
         @include('shop_layouts.info-bar')
 
         @include('shop_layouts.content')
+
+        @include('shop_layouts.info-panel')
         
         @include('shop_layouts.footer')
 
