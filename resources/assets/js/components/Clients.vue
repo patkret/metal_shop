@@ -8,7 +8,7 @@
 
                 <ul class="list-group">
                     <li class="list-group-item" v-for="user in users"> {{user.first_name}} {{user.last_name}}
-                        <button type="button" @click="pickUser(user)" style="background: none; border: none;">
+                        <button class="pull-right" type="button" @click="pickUser(user)" style="background: none; border: none;">
                             <i @click="clearList(users)" class="fa fa-plus-square-o" aria-hidden="true"></i>
                         </button>
                     </li>

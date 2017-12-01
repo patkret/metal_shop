@@ -43525,6 +43525,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "list-group-item"
     }, [_vm._v(" " + _vm._s(user.first_name) + " " + _vm._s(user.last_name) + "\n                    "), _c('button', {
+      staticClass: "pull-right",
       staticStyle: {
         "background": "none",
         "border": "none"

@@ -7,6 +7,7 @@ use App\Product;
 use App\Status;
 use App\Order;
 use App\OrderItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrder;
 
@@ -120,8 +121,17 @@ class OrdersController extends Controller
 
     public function findUsers(Request $request)
     {
-        return User::where('last_name', 'like', '%' . $request->user_name . '%')
-            ->orWhere('first_name', 'like', '%' . $request->user_name . '%')
+
+        $data = explode(' ', $request->user_name);
+        $data[1] = isset($data[1]) ? $data[1] : '';
+
+        return User::where('last_name', 'like', '%' . $data[0] . '%')
+            ->where('first_name', 'like', '%' . $data[1] . '%')
+            ->orWhere(function ($query) use($data){
+                $query->where('first_name', 'like', '%' . $data[0] . '%')
+                      ->where('last_name', 'like', '%' . $data[1] . '%');
+            })
+            ->orWhere('company_name', 'like','%'. $data[0] .'%')
             ->limit(15)
             ->get();
     }

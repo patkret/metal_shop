@@ -34,7 +34,11 @@
                                 {{$order->updated_at}}
                             </td>
                             <td>
+                                @if($order->status !== null)
                                 {{$order->status->name}}
+                                @else
+                                    <p>BRAK STATUSU</p>
+                                @endif
                             </td>
                             <td>
                                 @foreach($prices as $key => $value)
