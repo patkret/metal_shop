@@ -12690,19 +12690,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -12735,6 +12722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addProductToCategory: function addProductToCategory(product) {
+
             this.assignedProducts.push(product);
 
             this.allProducts = this.allProducts.filter(function (item) {
@@ -12742,14 +12730,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             console.log('id wybranej kategorii: ', this.$store.state.finalCategory);
-            //tutaj trzeba puknąc do api z dodaniem produktu do kategorii
 
-            //                axios.post(`/products/assign`, {
-            //                    allProducts: this.productName
-            //                })
-            //                    .then(result => {
-            //                        this.allProducts = result.data;
-            //                })
+            axios.post('/productcategories/assign/' + product.id + '/' + this.$store.state.finalCategory).then(function (result) {
+                console.log(result);
+            });
         },
         removeProductFromCategory: function removeProductFromCategory(product) {
             this.assignedProducts = this.assignedProducts.filter(function (item) {
@@ -12759,7 +12743,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.allProducts.push(product);
 
             console.log('id wybranej kategorii: ', this.$store.state.finalCategory);
-            //tutaj puknac do api z odpieciem kategorii
+
+            if (product.id > 0) {
+                axios.delete('/productcategories/delete-product/' + product.id + '/' + this.$store.state.finalCategory).then(function (result) {
+                    console.log(result);
+                });
+            }
         }
     },
     computed: {
@@ -12909,7 +12898,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -13166,21 +13154,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13192,7 +13165,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             productId: 0,
             products: [],
             selectedProducts: []
-
         };
     },
 
@@ -13242,6 +13214,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.products = [];
         }
     },
+
     created: function created() {
         if (this.saved_products) {
             this.selectedProducts = this.saved_products.map(function (product) {
@@ -13249,7 +13222,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     }
-
 });
 
 /***/ }),
@@ -43664,7 +43636,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((_vm.products), function(product) {
     return _c('li', {
       staticClass: "list-group-item"
-    }, [_vm._v(" " + _vm._s(product.name) + "\n                        "), _c('button', {
+    }, [_vm._v(" " + _vm._s(product.name) + "\n                    "), _c('button', {
       staticClass: "pull-right",
       staticStyle: {
         "background": "none",
@@ -43856,7 +43828,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('table', {
     staticClass: "table table-hover"
   }, [_c('tbody', [_vm._m(0, false, false), _vm._v(" "), _vm._l((_vm.assignedProducts), function(product) {
-    return _c('tr', [_c('td', [_vm._v("\n                                        " + _vm._s(product.id) + "\n                                    ")]), _vm._v(" "), _c('td', [_vm._v("\n                                        " + _vm._s(product.name) + "\n                                    ")]), _vm._v(" "), _c('td', [_c('button', {
+    return _c('tr', [_c('td', [_vm._v("\n                                " + _vm._s(product.id) + "\n                            ")]), _vm._v(" "), _c('td', [_vm._v("\n                                " + _vm._s(product.name) + "\n                            ")]), _vm._v(" "), _c('td', [_c('button', {
       staticStyle: {
         "background": "none",
         "border": "none"

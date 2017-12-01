@@ -2,7 +2,6 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-6">
-        <!--<button v-if="pickedUser" class="btn btn-success" @click="removeUser()">{{pickedUser}}</button>-->
                 <label for="user_name">Znajdź klienta</label>
                         <input @keyup="findUser()" type="text" v-model="user_name" id="user_name" name="user_name" class="form-control" placeholder="Szukaj klienta">
                         <input type="hidden" v-model="userId" name="user_id">

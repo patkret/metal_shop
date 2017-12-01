@@ -34,21 +34,19 @@
 
     @endphp
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">MODUŁY</li>
 
         @foreach($modules as $module)
 
                 <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-link"></i>
+                    <a href="{!! route($module->path.'.index') !!}">
+                        {{--<i class="fa fa-square"></i>--}}
                         <span>{{ $module->name }}</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{!! route($module->path.'.index') !!}">Indeks</a></li>
-                    </ul>
+                        {{--<a href="{!! route($module->path.'.index') !!}">{{ $module->name }}</a></li>--}}
                 </li>
         @endforeach
         <!-- Sidebar Menu -->

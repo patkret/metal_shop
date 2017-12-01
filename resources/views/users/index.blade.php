@@ -4,7 +4,6 @@
     <section class="content-header">
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Użytkownicy</a></li>
-            <li class="active">Indeks</li>
         </ul>
 
     </section>

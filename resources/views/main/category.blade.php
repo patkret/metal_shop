@@ -130,31 +130,6 @@
                    Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2
                </div>
            </div>
-           <div class="single-subcategory">
-               <img src="\images\photo\sruba933.png">
-               <div class="desc">
-                   Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2
-               </div>
-           </div>
-           <div class="single-subcategory">
-               <img src="\images\photo\sruba933.png">
-               <div class="desc">
-                   Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2
-               </div>
-           </div>
-           <div class="single-subcategory">
-               <img src="\images\photo\sruba933.png">
-               <div class="desc">
-                   Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2
-               </div>
-           </div>
-           <div class="single-subcategory">
-               <img src="\images\photo\sruba933.png">
-               <div class="desc">
-                   Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2
-               </div>
-           </div>
-
        </div>
    </div>
 

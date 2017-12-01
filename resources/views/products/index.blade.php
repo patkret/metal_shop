@@ -4,10 +4,9 @@
     <section class="content-header">
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Produkty</a></li>
-            <li class="active">Indeks</li>
         </ul>
     </section>
-    <a class="btn btn-primary btn-lg" href="{{route('products.create')}}" type="button" >Dodaj produkt</a>
+    <a class="btn btn-primary btn-lg" href="{{route('products.create')}}" type="button">Dodaj produkt</a>
 
     <ul class="list-group categories-rows">
         @foreach ($products as $item)
@@ -22,8 +21,6 @@
                     <a class="btn btn-sm" href="{!! route('products.edit', ['product'=> $item->id]) !!}">
                         <i class="fa fa-pencil-square-o fa-2x"></i>
                     </a>
-
-
                 </div>
             </li>
         @endforeach

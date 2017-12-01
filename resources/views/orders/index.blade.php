@@ -4,7 +4,6 @@
     <section class="content-header">
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Zamówienia</a></li>
-            <li class="active">Indeks</li>
         </ul>
     </section>
 
@@ -12,10 +11,8 @@
     <a class="btn btn-primary btn-lg" href="{{route('orders.create')}}" type="button">Dodaj zamówienie</a>
     <div class="box">
         <div class="box-header">
-            <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-
                     <tr>
                         <th>ID</th>
                         <th>Odbiorca</th>
@@ -26,8 +23,6 @@
                         <th>Usuń</th>
 
                     </tr>
-
-
                     @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
@@ -48,7 +43,6 @@
                                     @endif
                                 @endforeach
                             </td>
-
                             <td>
                                 <a class="btn btn-sm" href="{!! route('orders.edit', ['order'=> $order]) !!}">
                                     <i class="fa fa-pencil-square-o fa-2x"></i>
@@ -57,22 +51,15 @@
 
                             <td>
                                 {!!Form::model($order, ['route' => ['orders.destroy', $order], 'method' => 'DELETE'])!!}
-
                                 <button style="background: none; border: none;">
                                     <i class="fa fa-minus-square-o fa-2x"></i>
                                 </button>
-
                             </td>
                             {!!Form::close() !!}
-
                         </tr>
                     @endforeach
-
                 </table>
             </div>
         </div>
     </div>
-
-
-
 @endsection

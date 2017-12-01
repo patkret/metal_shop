@@ -77,18 +77,12 @@
                     <option value="1" selected>Tak</option>
                     <option value="0">Nie</option>
                 </select>
-                <br>
-                <label for="categories">Kategoria:</label>
-
-                    <Categories></Categories>
-
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-md-8 form-group">
-
                 {{Form::label('photo_1', 'Zdjęcie #1:',['class' => 'control-label'])}}
                 {{Form::file('photo_1', ['class' => 'btn btn-primary'])}}
 

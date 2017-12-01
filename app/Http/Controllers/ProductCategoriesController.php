@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Category;
@@ -63,26 +64,52 @@ class ProductCategoriesController extends Controller
 //        return view('product_categories.index', compact('topCategories'));
 //    }
 //
-    public function assignProduct(Request $request)
-    {
+//    public function assignProduct(Request $request)
+//    {
+//
+//        foreach ($request->selected as $id) {
+//            $check = DB::table('product_category')->where([
+//                ['id', '=', $id],
+//                ['category_id', '=', $request->parent]
+//            ])->get();
+//
+//            if(!count($check)) {
+//
+//                DB::table('product_category')->insert(
+//                    ['id' => $id, 'category_id' => $request->category_id]
+//                );
+//            }
+//
+//        }
+//
+//        return $this->showByCategory($request->parent);
+//    }
 
-        foreach ($request->selected as $id) {
-            $check = DB::table('product_category')->where([
-                ['id', '=', $id],
-                ['category_id', '=', $request->parent]
+    public function assignProduct($product, $category)
+    {
+        $check = DB::table('product_category')->where([
+                ['id', '=', $product],
+                ['category_id', '=', $category]
             ])->get();
 
-            if(!count($check)) {
+        if(!count($check)) {
 
-                DB::table('product_category')->insert(
-                    ['id' => $id, 'category_id' => $request->category_id]
-                );
-            }
-
+            DB::table('product_category')->insert(['id' => $product, 'category_id' => $category]);
         }
-
-        return $this->showByCategory($request->parent);
     }
+
+    public function deleteProduct($product, $category)
+    {
+        DB::table('product_category')->delete([
+                'id' => $product,
+                'category_id' => $category
+            ]
+        );
+
+        return ['status' => 1];
+    }
+
+
 //
 //    public function unassignProduct(Request $request)
 //    {

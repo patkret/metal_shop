@@ -30,6 +30,9 @@ class StoreUser extends FormRequest
             'phone_no' => 'required',
             'city' => 'required',
             'zip_code' => 'required',
+            'company_name' => 'required',
+            'nip' => 'required',
+            'street' => 'required',
 
         ];
     }
@@ -47,6 +50,9 @@ class StoreUser extends FormRequest
             'email.required' => 'Pole jest wymagane',
             'email.email' => 'Podaj poprawny e-mail',
             'email.unique' => 'Taki e-mail już istnieje w bazie danych',
+            'company_name.required' => 'Pole jest wymagane',
+            'nip.required' => 'Pole jest wymagane',
+            'street.required' => 'Pole jest wymagane'
 
         ];
     }

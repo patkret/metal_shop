@@ -11,7 +11,6 @@
 
 ul {
     list-style-type: none;
-
 }
 
 .line {
@@ -414,7 +413,7 @@ ul {
 #category {
     display: grid;
     height: auto;
-    grid-template-columns: 5% 34% 56% 5%;
+    grid-template-columns: 5% 25% 70% 5%;
     grid-template-rows: 2% 3% 2% 90% 3%;
     background-color: #2f2f2f;
     grid-template-areas: ". . . ." ". cat category-name . " ". . . ." ". main-categories subcategories ." ". . . . ";
@@ -473,11 +472,12 @@ ul {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+    max-height: 1200px
 }
 
 .desc {
     height: 70px;
-    font-size: 78%;
+    font-size: 85%;
     margin-left: 100px;
     margin-top: 10px;
 }
@@ -493,6 +493,94 @@ ul {
     float: left;
     padding-right: 40px;
     padding-top: 5px;
+}
+
+@media only screen and (min-width: 2000px){
+    .wrapper {
+        display: grid;
+        grid-template-rows: 151px 90px auto 300px 420px;
+        grid-template-areas: "shop-header" "info-bar" "app-content" "info-panel" "shop-footer";
+        color: #cccccc;
+    }
+
+    .shop-header {
+        height: 151px;
+        grid-template-rows: 75px 1px 75px;
+        grid-template-columns: 5% 10% 10% 50% 20% 5%;
+    }
+    .logo-text{
+        font-size: 150%;
+    }
+    .nav-categories{
+        font-size: 140%;
+        align-self: center;
+    }
+    .auth-panel{
+        font-size: 140%;
+    }
+    .auth-panel li{
+        margin-left: 10px;
+    }
+
+    .search-bar{
+        width: 75%;
+    }
+    .logo-image img{
+        width: 25%;
+        height: auto;
+    }
+
+    .info-bar{
+        height: 90px;
+        font-size: 115%;
+        line-height: 90px;
+    }
+    .arrow-left img, .arrow-right img{
+        width: 110%;
+        height: auto;
+    }
+
+    .info-bar-text{
+        line-height: 90px;
+        font-size: 115%;
+    }
+
+
+    /*CONTENT*/
+    .categories{
+        height: 360px;
+    }
+    .first-cat, .second-cat, .third-cat, .fourth-cat{
+        background-size: 103%, auto;
+        font-size: 120%;
+    }
+    .white-button , .black-button{
+        width: 250px;
+        height: 80px;
+    }
+
+    .info-panel{
+        font-size: 130%;
+        grid-template-columns: 20% 30% 70px 30% 20%;
+        grid-template-rows: 35% 65%;
+    }
+    .icon-percent img{
+        width:7%;
+        height: auto;
+    }
+    .icon-question img{
+        width:48%;
+        height: auto;
+    }
+    .shop-footer{
+        font-size: 150%;
+        height: 420px;
+        grid-template-rows: 15% 10% 65% 1px 10%;
+    }
+    .first-col li, .second-col li{
+        padding-top: 15px;
+    }
+
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1310px) {

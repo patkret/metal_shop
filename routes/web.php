@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/auth', function () {
     return view('welcome');
 });
 
@@ -34,7 +34,6 @@ Route::group([
 
 // products
 
-
     Route::get('/products', 'ProductsController@index')->name('products.index');
     Route::get('/products/create', 'ProductsController@create')->name('products.create');
     Route::post('/products', 'ProductsController@store')->name('products.store');
@@ -43,18 +42,19 @@ Route::group([
     Route::get('/products/edit/{product}', 'ProductsController@edit')->name('products.edit');
     Route::put('/products/update/{product}', 'ProductsController@update')->name('products.update');
 
-//product categories
+//assign product to category
     Route::get('/productcategories', 'ProductCategoriesController@index')->name('productcategories.index');
     Route::post('/productcategories/find-products', 'ProductCategoriesController@findProducts')->name('productcategories.findProducts');
     Route::post('products/find-category', 'ProductCategoriesController@findCategory')->name('productcategories.findCategory');
     Route::get('/products/by-category/{id}', 'ProductCategoriesController@showByCategory')->name('products.showByCategory');
-    Route::post('/products/assign', 'ProductsController@assignProduct')->name('products.assignProduct');
+    Route::post('/productcategories/assign/{product}/{category}', 'ProductCategoriesController@assignProduct')->name('productcategories.assignProduct');
+    Route::delete('/productcategories/delete-product/{product}/{category}', 'ProductCategoriesController@deleteProduct')->name('productcategories.deleteProduct');
+
 
 //    Route::post('/productcategories/showByPhrase/{assigned}/{available}', 'ProductCategoriesController@showByPhrase')->name('productcategories.showByPhrase');
 //    Route::get('/product-categories/assign', 'ProductsController@assign')->name('products.assign');
-//    /{assigned}/{available}
 //    Route::post('/products/unassign', 'ProductsController@unassignProduct')->name('products.unassignProduct');
-//   Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
+//    Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
 //    Route::get('/products/price', 'ProductsController@price')->name('products.price');
 //    Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
 //    Route::get('/products/description', 'ProductsController@description')->name('products.description');
@@ -119,16 +119,15 @@ Route::group([
     Route::post('/orders', 'OrdersController@store')->name('orders.store');
     Route::put('/orders/{order}', 'OrdersController@update')->name('orders.update');
     Route::delete('/orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
-    Route::delete('/orders/delete-item/{order}', 'OrdersController@deleteItem')->name('orders.destroy');
+    Route::delete('/orders/delete-item/{order}', 'OrdersController@deleteItem')->name('orders.deleteItem');
 });
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('main.index');
 });
 
 Route::get('/category', function () {
     return view('main.category');
 });
-
 
 Auth::routes();

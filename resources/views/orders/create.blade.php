@@ -30,9 +30,9 @@
                     </span>
             @endif
             <Products></Products>
-            @if ($errors->has('user_id'))
+            @if ($errors->has('product_id'))
                 <span class="help-block">
-                        <strong>{{ $errors->first('user_id') }}</strong>
+                        <strong>{{ $errors->first('product_id') }}</strong>
                     </span>
             @endif
         </div>

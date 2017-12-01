@@ -4,10 +4,7 @@
         <h3>Dodaj produkt</h3>
         <h5>(*)Pola wymagane</h5>
 
-
         {{Form::open(['action' => 'ProductsController@store'])}}
-        {{--<Categories></Categories>--}}
-
         <h3>Informacje o produkcie:</h3>
 
         {{--First row, two columns--}}
@@ -74,11 +71,6 @@
                     <option value="1" selected>Tak</option>
                     <option value="0">Nie</option>
                 </select>
-                <br>
-                <label for="categories">Kategoria:</label>
-                <div class="">
-                    <Categories></Categories>
-                </div>
             </div>
         </div>
 

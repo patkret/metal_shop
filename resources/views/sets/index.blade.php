@@ -4,7 +4,6 @@
     <section class="content-header">
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Zestawy</a></li>
-            <li class="active">Indeks</li>
         </ul>
     </section>
     <a class="btn btn-primary btn-lg" href="{{route('sets.create')}}" type="button">Dodaj zestaw</a>

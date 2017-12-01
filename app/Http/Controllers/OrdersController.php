@@ -128,7 +128,7 @@ class OrdersController extends Controller
 
     public function findProducts(Request $request)
     {
-        return Product::where('name', 'like', '%' . $request->productName . '%')
+        return Product::where('name', 'like', '%' . $request->product_name . '%')
             ->limit(30)
             ->get();
     }
