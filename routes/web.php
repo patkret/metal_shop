@@ -115,7 +115,7 @@ Route::group([
     Route::get('/orders', 'OrdersController@index')->name('orders.index');
     Route::get('/orders/create', 'OrdersController@create')->name('orders.create');
     Route::get('/orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
-    Route::post('/orders/find-users', 'OrdersController@findUsers')->name('orders.findUsers');
+    Route::any('/orders/find-users', 'OrdersController@findUsers')->name('orders.findUsers');
     Route::post('/orders/find-products/', 'OrdersController@findProducts')->name('orders.findProducts');
     Route::post('/orders', 'OrdersController@store')->name('orders.store');
     Route::put('/orders/{order}', 'OrdersController@update')->name('orders.update');
