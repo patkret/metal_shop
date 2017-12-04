@@ -4,7 +4,7 @@
         <h3>Dodaj produkt</h3>
         <h5>(*)Pola wymagane</h5>
 
-        {{Form::open(['action' => 'ProductsController@store'])}}
+        {{Form::open(['route' => 'products.store', 'files' => true])}}
         <h3>Informacje o produkcie:</h3>
 
         {{--First row, two columns--}}
@@ -30,8 +30,6 @@
             </div>
 
             <div class="col-md-4">
-
-
                 <label for="code">Kod*:</label>
                 <input id="code" name="code" type="text" placeholder="Wpisz kod ..." class="form-control"
                        value="{{old('code')}}">
@@ -79,11 +77,11 @@
             <div class="col-md-8 form-group">
 
                 {{Form::label('photo_1', 'Zdjęcie #1:',['class' => 'control-label'])}}
-                {{Form::file('photo_1', ['class' => 'btn btn-primary'])}}
+                {{Form::file('photo_1')}}
 
 
                 {{Form::label('photo_2', 'Zdjęcie #2:',['class' => 'control-label'])}}
-                {{Form::file('photo_2', ['class' => 'btn btn-primary'])}}
+                {{Form::file('photo_2')}}
             </div>
 
         </div>
@@ -176,7 +174,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <input type="number" id="value_discount" name="value_discount" class="form-control"
-                           value="{{old('value_discount')}}" placeholder="% RABATU">
+                           value="0" placeholder="% RABATU">
                     @if ($errors->has('value_discount'))
                         <span class="help-block">
                                     <strong>{{ $errors->first('value_discount') }}</strong>
@@ -188,7 +186,7 @@
                 <label class="col-sm-1">OD</label>
                 <div class="col-sm-3">
                     <input type="number" id="vd_target" name="vd_target" class="form-control"
-                           value="{{old('vd_target')}}" placeholder="KWOTY">
+                           value="0" placeholder="KWOTY">
                     @if ($errors->has('vd_target'))
                         <span class="help-block">
                             <strong>{{ $errors->first('vd_target') }}</strong>
@@ -202,7 +200,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <input type="number" id="amount_discount" name="amount_discount" class="form-control"
-                           value="{{old('amount_discount')}}" placeholder="% RABATU">
+                           value="0" placeholder="% RABATU">
                     @if ($errors->has('amount_discount'))
                         <span class="help-block">
                             <strong>{{ $errors->first('amount_discount') }}</strong>
@@ -214,7 +212,7 @@
 
                 <div class="col-sm-3">
                     <input type="number" id="ad_target" name="ad_target" class="form-control"
-                           value="{{old('ad_target')}}" placeholder="ILOŚCI">
+                           value="0" placeholder="ILOŚCI">
                     @if ($errors->has('ad_target'))
                         <span class="help-block">
                             <strong>{{ $errors->first('ad_target') }}</strong>
@@ -226,7 +224,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <input type="number" id="amount_discount_2" name="amount_discount_2" class="form-control"
-                           value="{{old('amount_discount_2')}}" placeholder="% RABATU">
+                           value="0" placeholder="% RABATU">
                     @if ($errors->has('amount_discount_2'))
                         <span class="help-block">
                             <strong>{{ $errors->first('amount_discount_2') }}</strong>
@@ -236,7 +234,7 @@
                 <label class="col-sm-1">DLA</label>
                 <div class="col-sm-3">
                     <input type="number" id="ad_target_2" name="ad_target_2" class="form-control"
-                           value="{{old('ad_target_2')}}" placeholder="ILOŚCI">
+                           value="0" placeholder="ILOŚCI">
                     @if ($errors->has('ad_target_2'))
                         <span class="help-block">
                             <strong>{{ $errors->first('ad_target_2') }}</strong>

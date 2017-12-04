@@ -46,10 +46,16 @@ class ModulesSeeder extends Seeder
             'path' => "status",
             'name' => "statusy zamówień"
         ]);
+        Module::insert([
+            'path' => "orders",
+            'name' => "zamówienia"
+        ]);
 
         Module::insert([
             'path' => "productcategories",
             'name' => "przypisywanie produktów"
         ]);
+
+
     }
 }

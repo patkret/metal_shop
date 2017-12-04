@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-xs-6 form-group">
                             {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
-                            {{Form::file('photo', ['enctype' => 'multipart/form-data', 'data-max-size' => '2048'])}}
+                            {{Form::file('photo')}}
                             @if ($errors->has('photo'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('photo') }}</strong>
@@ -103,7 +103,7 @@
                         <div class="col-xs-6 form-group">
                             {{--<img alt="" class="center-block img-responsive">--}}
                             {{Form::label('logo', 'Logo:',['class' => 'control-label'])}}
-                            {{Form::file('logo', ['enctype' => 'multipart/form-data'])}}
+                            {{Form::file('logo')}}
                             @if ($errors->has('logo'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('logo') }}</strong>

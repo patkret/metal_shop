@@ -42,6 +42,7 @@ Route::group([
     Route::get('/products/edit/{product}', 'ProductsController@edit')->name('products.edit');
     Route::put('/products/update/{product}', 'ProductsController@update')->name('products.update');
 
+
 //assign product to category
     Route::get('/productcategories', 'ProductCategoriesController@index')->name('productcategories.index');
     Route::post('/productcategories/find-products', 'ProductCategoriesController@findProducts')->name('productcategories.findProducts');
@@ -57,7 +58,7 @@ Route::group([
 //    Route::get('/products/show-products/{assigned}/{available}/{category?}/{query?}', 'ProductsController@showProducts')->name('products.showProducts');
 //    Route::get('/products/price', 'ProductsController@price')->name('products.price');
 //    Route::get('/products/{product}/price', 'ProductsController@getPrice')->name('products.getPrice');
-//    Route::get('/products/description', 'ProductsController@description')->name('products.description');
+    Route::get('/products/description', 'ProductsController@description')->name('products.description');
 
 
 // SETS
@@ -120,7 +121,13 @@ Route::group([
     Route::put('/orders/{order}', 'OrdersController@update')->name('orders.update');
     Route::delete('/orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
     Route::delete('/orders/delete-item/{order}', 'OrdersController@deleteItem')->name('orders.deleteItem');
+
+//CATEGORY DESCRIPTIONS
+//    Route::get('descriptions', 'DescriptionsController@index')->name('descriptions.index');
 });
+
+
+
 
 Route::get('/', function () {
     return view('main.index');

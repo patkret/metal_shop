@@ -16,10 +16,10 @@
         <span></span>
 
         <ul id="menu">
-            <li><a href="#">ELEMENTY ZŁĄCZNE</a></li>
-            <li><a href="#">OSPRZĘT ŻEGLARSKI</a></li>
-            <li><a href="#">NARZĘDZIA</a></li>
-            <li><a href="#">CHEMIA</a></li>
+            <li><a href="\category">ELEMENTY ZŁĄCZNE</a></li>
+            <li><a href="\category">OSPRZĘT ŻEGLARSKI</a></li>
+            <li><a href="\category">NARZĘDZIA</a></li>
+            <li><a href="\category">CHEMIA</a></li>
 
         </ul>
     </div>
@@ -34,9 +34,9 @@
     <div class="nav-categories">
         <ul>
             <li><a href="\category">ELEMENTY ZŁĄCZNE</a></li>
-            <li><a href="#">OSPRZĘT ŻEGLARSKI</a></li>
-            <li><a href="#">NARZĘDZIA</a></li>
-            <li><a href="#">CHEMIA</a></li>
+            <li><a href="\category">OSPRZĘT ŻEGLARSKI</a></li>
+            <li><a href="\category">NARZĘDZIA</a></li>
+            <li><a href="\category">CHEMIA</a></li>
         </ul>
     </div>
     <div class="search-bar">

@@ -41,6 +41,17 @@ class ProductsController extends Controller
     public function store(StoreProduct $request)
     {
 
+        if ($request->file('photo_1')) {
+            $photo_1 = str_random(20).'.'.$request->file('photo_1')->getClientOriginalExtension();
+            $request->file('photo_1')->move(public_path() . '/images/photo/', $photo_1);
+            $request->photo_1 = $photo_1;
+        }
+
+        if ($request->file('photo_2')) {
+            $photo_2 = str_random(20).'.'.$request->file('photo_2')->getClientOriginalExtension();
+            $request->file('photo_2')->move(public_path() . '/images/photo/', $photo_2);
+            $request->photo_2 = $photo_2;
+        }
 
         $product = Product::create($request->all());
         $product->save();
