@@ -116,7 +116,7 @@ Route::group([
     Route::get('/orders/create', 'OrdersController@create')->name('orders.create');
     Route::get('/orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
     Route::any('/orders/find-users', 'OrdersController@findUsers')->name('orders.findUsers');
-    Route::post('/orders/find-products/', 'OrdersController@findProducts')->name('orders.findProducts');
+    Route::any('/orders/find-products/', 'OrdersController@findProducts')->name('orders.findProducts');
     Route::post('/orders', 'OrdersController@store')->name('orders.store');
     Route::put('/orders/{order}', 'OrdersController@update')->name('orders.update');
     Route::delete('/orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
