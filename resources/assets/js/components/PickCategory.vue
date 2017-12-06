@@ -2,6 +2,7 @@
     <div>
         <div class="form-group">
             <label>Kategoria</label>
+
             <select @change="fetchChildren(1)" class="form-control" v-model="selectedCategory">
                 <option value="">Wybierz kategorię</option>
                 <option v-for="category in categories" :value="category.id">
@@ -18,9 +19,8 @@
                     {{child.name}}
                 </option>
             </select>
-
         </div>
-
+        <input type="hidden" v-model="last_category" name="last_category">
 
     </div>
 
@@ -32,7 +32,8 @@
                 categories: [],
                 selectedCategory: '',
                 children: [],
-                selectedChild: {}
+                selectedChild: {},
+                last_category: ''
             }
         },
 //        computed: {
@@ -60,6 +61,7 @@
                 }
 
                 this.$store.state.finalCategory = picked;
+                this.last_category = picked;
 
                 axios.get(`/categories/${picked}/children`).then(response => {
                     const {data} = response;

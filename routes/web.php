@@ -122,8 +122,13 @@ Route::group([
     Route::delete('/orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
     Route::delete('/orders/delete-item/{order}', 'OrdersController@deleteItem')->name('orders.deleteItem');
 
-//CATEGORY DESCRIPTIONS
-//    Route::get('descriptions', 'DescriptionsController@index')->name('descriptions.index');
+//PRODUCTS DESCRIPTIONS
+    Route::get('/productdescriptions', 'ProductDescriptionsController@index')->name('productdescriptions.index');
+    Route::post('/productdescriptions', 'ProductDescriptionsController@store')->name('productdescriptions.store');
+
+//CATEGORIES DESCRIPTIONS
+    Route::get('/categorydescriptions', 'CategoryDescriptionsController@index')->name('categorydescriptions.index');
+    Route::post('/categorydescriptions', 'CategoryDescriptionsController@store')->name('categorydescriptions.store');
 });
 
 
