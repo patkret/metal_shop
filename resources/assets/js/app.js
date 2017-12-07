@@ -13,6 +13,7 @@ import Categories from './components/Categories.vue';
 import PickCategory from './components/PickCategory.vue';
 import AssignProductsCategory from './components/AssignProductsCategory.vue';
 import PickProduct from './components/PickProduct.vue';
+import ProductDescriptions from './components/ProductDescriptions.vue';
 
 
 
@@ -27,6 +28,7 @@ const app = new Vue({
         Categories,
         PickCategory,
         AssignProductsCategory,
-        PickProduct
+        PickProduct,
+        ProductDescriptions
     }
 });

@@ -36,12 +36,10 @@
                             </tr>
                             <tr v-for="product in selectedProducts">
                                 <td>
-                                    <input v-bind:name="'items_ids[' + product.id + ']'" v-bind:value="product.item_id"
-                                           type="hidden">
                                     <input name="product_ids[]" v-bind:value="product.id" type="hidden"> {{product.id}}
                                 </td>
                                 <td>
-                                    <input name="name" v-bind:value="product.name" type="hidden">{{product.name}}
+                                    {{product.name}}
                                 </td>
                                 <td v-if="product.desc_short !== null">
                                    {{product.desc_short}}
@@ -115,7 +113,7 @@
                 } else{
                     myProduct.desc_short = product.desc_short;
                 }
-                if(product.desc_short !== null  && product.desc_long.length > 200 ) {
+                if(product.desc_long !== null  && product.desc_long.length > 200 ) {
                     myProduct.desc_long = product.desc_long.substring(0, 200) + '...';
                 } else{
                     myProduct.desc_long = product.desc_long;
@@ -133,10 +131,5 @@
             },
         },
 
-//        created: function () {
-//            if (this.saved_products) {
-//                this.selectedProducts = this.saved_products.map(product => product);
-//            }
-//        }
     }
 </script>

@@ -11765,6 +11765,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AssignProductsCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_AssignProductsCategory_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_PickProduct_vue__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_PickProduct_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_PickProduct_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_ProductDescriptions_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_ProductDescriptions_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_ProductDescriptions_vue__);
 __webpack_require__(37);
 
 window.Vue = __webpack_require__(11);
@@ -11772,6 +11774,7 @@ window.Vue = __webpack_require__(11);
 
 
 window.axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a;
+
 
 
 
@@ -11790,7 +11793,8 @@ var app = new Vue({
         Categories: __WEBPACK_IMPORTED_MODULE_4__components_Categories_vue___default.a,
         PickCategory: __WEBPACK_IMPORTED_MODULE_5__components_PickCategory_vue___default.a,
         AssignProductsCategory: __WEBPACK_IMPORTED_MODULE_6__components_AssignProductsCategory_vue___default.a,
-        PickProduct: __WEBPACK_IMPORTED_MODULE_7__components_PickProduct_vue___default.a
+        PickProduct: __WEBPACK_IMPORTED_MODULE_7__components_PickProduct_vue___default.a,
+        ProductDescriptions: __WEBPACK_IMPORTED_MODULE_8__components_ProductDescriptions_vue___default.a
     }
 });
 
@@ -13163,8 +13167,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13212,7 +13214,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 myProduct.desc_short = product.desc_short;
             }
-            if (product.desc_short !== null && product.desc_long.length > 200) {
+            if (product.desc_long !== null && product.desc_long.length > 200) {
                 myProduct.desc_long = product.desc_long.substring(0, 200) + '...';
             } else {
                 myProduct.desc_long = product.desc_long;
@@ -13229,11 +13231,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 
-    //        created: function () {
-    //            if (this.saved_products) {
-    //                this.selectedProducts = this.saved_products.map(product => product);
-    //            }
-    //        }
 });
 
 /***/ }),
@@ -44345,29 +44342,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('tbody', [_vm._m(1, false, false), _vm._v(" "), _vm._l((_vm.selectedProducts), function(product) {
     return _c('tr', [_c('td', [_c('input', {
       attrs: {
-        "name": 'items_ids[' + product.id + ']',
-        "type": "hidden"
-      },
-      domProps: {
-        "value": product.item_id
-      }
-    }), _vm._v(" "), _c('input', {
-      attrs: {
         "name": "product_ids[]",
         "type": "hidden"
       },
       domProps: {
         "value": product.id
       }
-    }), _vm._v(" " + _vm._s(product.id) + "\n                            ")]), _vm._v(" "), _c('td', [_c('input', {
-      attrs: {
-        "name": "name",
-        "type": "hidden"
-      },
-      domProps: {
-        "value": product.name
-      }
-    }), _vm._v(_vm._s(product.name) + "\n                            ")]), _vm._v(" "), (product.desc_short !== null) ? _c('td', [_vm._v("\n                               " + _vm._s(product.desc_short) + "\n                            ")]) : _c('td', [_c('p', [_vm._v("BRAK OPISU")])]), _vm._v(" "), (product.desc_long !== null) ? _c('td', [_vm._v("\n                                " + _vm._s(product.desc_long) + "\n                            ")]) : _c('td', [_c('p', [_vm._v("BRAK OPISU")])]), _vm._v(" "), _c('td', [_c('button', {
+    }), _vm._v(" " + _vm._s(product.id) + "\n                            ")]), _vm._v(" "), _c('td', [_vm._v("\n                                " + _vm._s(product.name) + "\n                            ")]), _vm._v(" "), (product.desc_short !== null) ? _c('td', [_vm._v("\n                               " + _vm._s(product.desc_short) + "\n                            ")]) : _c('td', [_c('p', [_vm._v("BRAK OPISU")])]), _vm._v(" "), (product.desc_long !== null) ? _c('td', [_vm._v("\n                                " + _vm._s(product.desc_long) + "\n                            ")]) : _c('td', [_c('p', [_vm._v("BRAK OPISU")])]), _vm._v(" "), _c('td', [_c('button', {
       staticStyle: {
         "background": "none",
         "border": "none"
@@ -45488,6 +45469,220 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            desc_short: '',
+            desc_long: '',
+            checked_short: false,
+            checked_long: false
+        };
+    }
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(67),
+  /* template */
+  __webpack_require__(69),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/var/www/html/hurtmet_admin/resources/assets/js/components/ProductDescriptions.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ProductDescriptions.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08440c1e", Component.options)
+  } else {
+    hotAPI.reload("data-v-08440c1e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('label', {
+    attrs: {
+      "for": "desc_short"
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.checked_short),
+      expression: "checked_short"
+    }],
+    attrs: {
+      "id": "desc_short_check",
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.checked_short) ? _vm._i(_vm.checked_short, null) > -1 : (_vm.checked_short)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.checked_short,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.checked_short = $$a.concat([$$v]))
+          } else {
+            $$i > -1 && (_vm.checked_short = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.checked_short = $$c
+        }
+      }
+    }
+  }), _vm._v(" Opis krótki (do 255 znaków):")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.desc_short),
+      expression: "desc_short"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "desc_short",
+      "name": "descriptions[desc_short]",
+      "rows": "3",
+      "placeholder": "Wpisz opis ...",
+      "disabled": !_vm.checked_short,
+      "maxlength": "255"
+    },
+    domProps: {
+      "value": (_vm.desc_short)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.desc_short = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "desc_long"
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.checked_long),
+      expression: "checked_long"
+    }],
+    attrs: {
+      "id": "desc_long_check",
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.checked_long) ? _vm._i(_vm.checked_long, null) > -1 : (_vm.checked_long)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.checked_long,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.checked_long = $$a.concat([$$v]))
+          } else {
+            $$i > -1 && (_vm.checked_long = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.checked_long = $$c
+        }
+      }
+    }
+  }), _vm._v(" Opis długi:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.desc_long),
+      expression: "desc_long"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "desc_long",
+      "name": "descriptions[desc_long]",
+      "rows": "4",
+      "placeholder": "Wpisz opis ...",
+      "disabled": !_vm.checked_long
+    },
+    domProps: {
+      "value": (_vm.desc_long)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.desc_long = $event.target.value
+      }
+    }
+  })])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-08440c1e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

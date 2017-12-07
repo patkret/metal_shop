@@ -14,11 +14,9 @@ class ProductDescriptionsController extends Controller
 
     public function store(Request $request)
     {
-
-        $data = array_filter($request->descriptions);
-        if(!empty($data)){
+        if(!empty($request->descriptions)){
             Product::whereIn('id', $request->product_ids)
-                ->update($data);
+                ->update($request->descriptions);
         }
         return redirect()->back()->with('status', 'OPISY ZOSTAŁY ZMIENIONE');
     }
