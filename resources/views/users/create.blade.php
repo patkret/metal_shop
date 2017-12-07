@@ -5,21 +5,20 @@
 
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Użytkownicy</a></li>
-            <li class="active">Stwórz</li>
+            <li class="active">Dodaj</li>
         </ol>
     </section>
-    <h3 class="box-title"></h3>
-<div class="col-lg-12">
+    <br>
+    <h3 class="box-title">Dodaj użytkownika</h3>
+
 <section class="content">
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Dodaj użytkownika</h3>
-                </div>
+                {{--<div class="box-header with-border">--}}
+                {{--</div>--}}
 
             {{Form::open(['action' => 'UsersController@store'])}}
             <!-- /.box-header -->
                 <div class="box-body">
-
                     <!-- text input -->
                     <div class="row">
                         <div class="col-xs-5">
@@ -191,7 +190,5 @@
 
             </div>
 </section>
-</div>
-
 
 @endsection

@@ -6,6 +6,7 @@
             <li><a href="#"><i class="fa fa-dashboard"></i>Grupy</a></li>
         </ul>
     </section>
+    <br>
     <div class="col-xs-6">
         <a class="btn btn-primary btn-lg" href="{{route('groups.create')}}" type="button">Dodaj grupę</a>
         <div class="box">

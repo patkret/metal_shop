@@ -4,7 +4,7 @@
 
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Grupy</a></li>
-            <li class="active">Stwórz</li>
+            <li class="active">Dodaj</li>
         </ol>
     </section>
     <div class="col-xs-6">

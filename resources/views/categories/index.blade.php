@@ -6,7 +6,9 @@
             <li><a href="#"><i class="fa fa-dashboard"></i> Kategorie</a></li>
         </ul>
     </section>
+    <br />
     <a class="btn btn-primary btn-lg" href="{{route('categories.create')}}" type="button">Dodaj kategorię</a>
+    <br>
     <ul class="list-group categories-rows">
         @foreach ($topCategories as $topCategory)
             <li class="list-group-item categories-rows" data-id="{{ $topCategory->id }}">

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+    <section class="content-header">
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Grupy</a></li>
+            <li class="active">Edytuj</li>
+        </ul>
+    </section>
+    <br>
     <div class="col-xs-6">
         <section class="content">
             <div class="box box-primary">

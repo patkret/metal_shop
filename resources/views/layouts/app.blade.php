@@ -46,9 +46,9 @@
         
         @include('layouts.content')
         
-        @include('layouts.footer')
+        {{--@include('layouts.footer')--}}
 
-        @include('layouts.controlbar')
+        {{--@include('layouts.controlbar')--}}
         <div class="control-sidebar-bg"></div>
     </div>
 

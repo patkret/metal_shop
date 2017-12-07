@@ -2,15 +2,16 @@
 @section('content')
 
     <section class="content-header">
-        <h1>
-            Edycja kategorii
-        </h1>
+
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Kategorie</a></li>
             <li class="active">Edytuj</li>
         </ol>
     </section>
-
+    <br>
+    <h1>
+        Edycja kategorii
+    </h1>
     <div class="row">
         {{Form::open(['action' => ['CategoriesController@update', 'category' => $category->id], 'files' => true])}}
         <div class="col-md-6">

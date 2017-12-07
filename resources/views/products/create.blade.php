@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    <section class="content-header">
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Produkty</a></li>
+            <li class="active">Dodaj</li>
+        </ul>
+    </section>
     <div class="box-body">
         <h3>Dodaj produkt</h3>
         <h5>(*)Pola wymagane</h5>

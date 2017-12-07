@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Role</a></li>
+            <li class="active">Edytuj</li>
+        </ol>
+
+    </section>
+    <br>
+    <h3>Edytuj rolę</h3>
     <div class="col-xs-5">
         <div class="box box-primary">
-
-            <div class="box-header with-border">
-                <h3 class="box-title">Edytuj rolę</h3>
-            </div>
-
 
             {!! Form::model($roles, [
            'route' => ['roles.update', $roles],

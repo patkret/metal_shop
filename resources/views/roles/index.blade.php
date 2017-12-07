@@ -6,10 +6,9 @@
             <li><a href="#"><i class="fa fa-dashboard"></i>Role</a></li>
         </ul>
     </section>
-
-
+    <br>
     <div class="col-xs-6">
-        <a class="btn btn-primary btn-lg" href="{{route('roles.create')}}" type="button" >Dodaj rolę</a>
+        <a class="btn btn-primary btn-lg" href="{{route('roles.create')}}" type="button">Dodaj rolę</a>
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Role</h3>
@@ -32,16 +31,16 @@
                                 <td>{{ $role->name }}</td>
 
                                 <td>
-                                        <a class="btn btn-sm" href="{!! route('roles.edit', ['roles'=> $role->id]) !!}">
-                                            <i class="fa fa-pencil-square-o fa-2x"></i>
-                                        </a>
+                                    <a class="btn btn-sm" href="{!! route('roles.edit', ['roles'=> $role->id]) !!}">
+                                        <i class="fa fa-pencil-square-o fa-2x"></i>
+                                    </a>
                                 </td>
                                 <td>
-                                        {!!Form::model($role, ['route' => ['roles.destroy', $role], 'method' => 'DELETE'])!!}
-                                        <button style="background: none; border: none;">
-                                            <i class="fa fa-minus-square-o fa-2x"></i>
-                                        </button>
-                                        {!!Form::close() !!}
+                                    {!!Form::model($role, ['route' => ['roles.destroy', $role], 'method' => 'DELETE'])!!}
+                                    <button style="background: none; border: none;">
+                                        <i class="fa fa-minus-square-o fa-2x"></i>
+                                    </button>
+                                    {!!Form::close() !!}
                                 </td>
 
                             </tr>

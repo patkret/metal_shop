@@ -6,6 +6,7 @@
             <li><a href="#"><i class="fa fa-dashboard"></i> Produkty</a></li>
         </ul>
     </section>
+    <br>
     <a class="btn btn-primary btn-lg" href="{{route('products.create')}}" type="button">Dodaj produkt</a>
 
     <ul class="list-group categories-rows">
