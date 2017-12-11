@@ -92,21 +92,21 @@
 
                     <div class="row">
                         <div class="col-xs-6 form-group">
-                            {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
-                            {{Form::file('photo')}}
-                            @if ($errors->has('photo'))
+                            {{Form::label('photo_file', 'Zdjęcie:',['class' => 'control-label'])}}
+                            {{Form::file('photo_file')}}
+                            @if ($errors->has('photo_file'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('photo') }}</strong>
+                                    <strong>{{ $errors->first('photo_file') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="col-xs-6 form-group">
                             {{--<img alt="" class="center-block img-responsive">--}}
-                            {{Form::label('logo', 'Logo:',['class' => 'control-label'])}}
-                            {{Form::file('logo')}}
-                            @if ($errors->has('logo'))
+                            {{Form::label('logo_file', 'Logo:',['class' => 'control-label'])}}
+                            {{Form::file('logo_file')}}
+                            @if ($errors->has('logo_file'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('logo') }}</strong>
+                                    <strong>{{ $errors->first('logo_file') }}</strong>
                                 </span>
                             @endif
                         </div>

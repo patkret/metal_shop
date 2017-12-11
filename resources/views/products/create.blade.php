@@ -82,12 +82,12 @@
         <div class="row">
             <div class="col-md-8 form-group">
 
-                {{Form::label('photo_1', 'Zdjęcie #1:',['class' => 'control-label'])}}
-                {{Form::file('photo_1')}}
+                {{Form::label('photo_1_file', 'Zdjęcie #1:',['class' => 'control-label'])}}
+                {{Form::file('photo_1_file')}}
 
 
-                {{Form::label('photo_2', 'Zdjęcie #2:',['class' => 'control-label'])}}
-                {{Form::file('photo_2')}}
+                {{Form::label('photo_2_file', 'Zdjęcie #2:',['class' => 'control-label'])}}
+                {{Form::file('photo_2_file')}}
             </div>
 
         </div>

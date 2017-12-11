@@ -25,8 +25,8 @@ class StoreCategory extends FormRequest
     {
         return [
             'name' => 'required',
-            'logo' => 'mimes:jpeg,jpg,gif,png|max:2048',
-            'photo' => 'mimes:jpeg,jpg,gif,png|max:2048',
+            'logo_file' => 'mimes:jpeg,jpg,gif,png|max:2048',
+            'photo_file' => 'mimes:jpeg,jpg,gif,png|max:2048',
 
         ];
     }
@@ -35,10 +35,10 @@ class StoreCategory extends FormRequest
     {
         return [
             'name.required' => 'Pole jest wymagane',
-            'logo.max' => 'Zbyt duży rozmiar pliku.(max. rozmiar 2MB)',
-            'photo.max' => 'Zbyt duży rozmiar pliku.(max. rozmiar 2MB)',
-            'logo.mimes' => 'Niewłaściwy format pliku. Możliwe formaty: jpeg, jpg, gif, png.',
-            'photo.mimes' => 'Niewłaściwy format pliku. Możliwe formaty: jpeg, jpg, gif, png.'
+            'logo_file.max' => 'Zbyt duży rozmiar pliku.(max. rozmiar 2MB)',
+            'photo_file.max' => 'Zbyt duży rozmiar pliku.(max. rozmiar 2MB)',
+            'logo_file.mimes' => 'Niewłaściwy format pliku. Możliwe formaty: jpeg, jpg, gif, png.',
+            'photo_file.mimes' => 'Niewłaściwy format pliku. Możliwe formaty: jpeg, jpg, gif, png.'
         ];
     }
 }

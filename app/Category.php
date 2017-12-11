@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
@@ -21,6 +22,14 @@ class Category extends Model
     public function products(){
 
         return $this->belongsToMany(Product::class,'product_category','id', 'category_id');
+    }
+
+    public static function selectByMain($mainCategory){
+
+        $category = DB::table('maincategory_categories')->where('main_id', $mainCategory)->pluck('category_id');
+
+        return static::whereIn('id', $category)->get();
+
     }
 
 }

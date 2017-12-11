@@ -16,10 +16,10 @@
         <span></span>
 
         <ul id="menu">
-            <li><a href="\category">ELEMENTY ZŁĄCZNE</a></li>
-            <li><a href="\category">OSPRZĘT ŻEGLARSKI</a></li>
-            <li><a href="\category">NARZĘDZIA</a></li>
-            <li><a href="\category">CHEMIA</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 1])}}">ELEMENTY ZŁĄCZNE</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 2])}}">OSPRZĘT ŻEGLARSKI</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 3])}}">NARZĘDZIA</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 4])}}">CHEMIA</a></li>
 
         </ul>
     </div>
@@ -29,14 +29,14 @@
         <img src="\images\logo\sygnet.png">
     </div>
     <div class="logo-text">
-        HURTMET pl
+        <a href="/">HURTMET pl</a>
     </div>
     <div class="nav-categories">
         <ul>
-            <li><a href="\category">ELEMENTY ZŁĄCZNE</a></li>
-            <li><a href="\category">OSPRZĘT ŻEGLARSKI</a></li>
-            <li><a href="\category">NARZĘDZIA</a></li>
-            <li><a href="\category">CHEMIA</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 1])}}">ELEMENTY ZŁĄCZNE</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 2])}}">OSPRZĘT ŻEGLARSKI</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 3])}}">NARZĘDZIA</a></li>
+            <li><a href="{{route('categories.byMain',['mainCategory' => 4])}}">CHEMIA</a></li>
         </ul>
     </div>
     <div class="search-bar">

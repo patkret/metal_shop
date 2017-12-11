@@ -13,12 +13,7 @@
         <h5>(*)Pola wymagane</h5>
 
 
-        {!! Form::model($product, [
-              'route' => ['products.update', $product],
-              'method' => 'PUT'
-                ]) !!}
-
-
+        {{Form::open(['action' => ['ProductsController@update', 'product' => $product->id], 'files' => true])}}
         <h3>Informacje o produkcie:</h3>
 
         {{--First row, two columns--}}
@@ -88,18 +83,24 @@
             </div>
         </div>
 
+        <div class="form-group row col-md-10">
 
-        <div class="row">
-            <div class="col-md-8 form-group">
-                {{Form::label('photo_1', 'Zdjęcie #1:',['class' => 'control-label'])}}
-                {{Form::file('photo_1', ['class' => 'btn btn-primary'])}}
-
-
-                {{Form::label('photo_2', 'Zdjęcie #2:',['class' => 'control-label'])}}
-                {{Form::file('photo_2', ['class' => 'btn btn-primary'])}}
-            </div>
+        <div class="row-md-6">
+            {{Form::label('photo_1_file', 'Zdjęcie #1:',['class' => 'control-label'])}}
+            <img src="{{asset($product->photo_1)}}" class="img-responsive" alt="BRAK ZDJĘCIA"
+                 style="max-width: 150px; height: 70px ">
+            <br>
+            {{Form::file('photo_1_file')}}
+            <br>
+            {{Form::label('photo_2_file', 'Zdjęcie #2:',['class' => 'control-label'])}}
+            <img src="{{asset($product->photo_2)}}" class="img-responsive" alt="BRAK ZDJĘCIA"
+                 style="max-width: 150px; height: 70px ">
+            <br>
+            {{Form::file('photo_2_file')}}
+        </div>
 
         </div>
+
         <div class="form-group row col-md-8">
 
             <h3>Ceny:</h3>
@@ -169,7 +170,8 @@
 
                 <div class="col-sm-6">
                     <label for="custom_margin">Marża (w %):</label>
-                    <input type="number" class="form-control" id="custom_margin" name="custom_margin" value="{{$product->custom_margin}}" step=".01">
+                    <input type="number" class="form-control" id="custom_margin" name="custom_margin"
+                           value="{{$product->custom_margin}}" step=".01">
                 </div>
             </div>
             <br>
@@ -260,14 +262,14 @@
         </div>
 
 
-
         <div class="row col-md-8">
             <h3>Grupy:</h3>
             <br>
             @foreach($groups as $group)
 
                 <div class="form-group">
-                    <input name="group_id[{{$group->id}}]" value="{{$group->id}}" type="checkbox" {{isset($product_groups[$group->id]) ? 'checked' : ''}}>
+                    <input name="group_id[{{$group->id}}]" value="{{$group->id}}"
+                           type="checkbox" {{isset($product_groups[$group->id]) ? 'checked' : ''}}>
                     {{$group->name}}
                 </div>
 

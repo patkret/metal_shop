@@ -11,7 +11,17 @@ body{
 .select-category {
     display: none;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: #ff5f38;
+    text-decoration: none;
+}
+li:active{
+    color: #00a7d0;
+}
 ul {
     list-style-type: none;
 }
@@ -105,6 +115,9 @@ ul {
 .nav-categories a {
     text-decoration: none;
     color: #cccccc;
+}
+.nav-categories a:hover{
+    color: #ff5f38;
 }
 
 .search-bar {
@@ -267,6 +280,14 @@ ul {
 
 }
 
+.white-button a{
+    color: #000000;
+}
+
+.white-button a:hover{
+    color: #ff5f38;
+}
+
 .third-cat > .white-button {
     justify-self: end;
     align-self: center;
@@ -417,7 +438,7 @@ ul {
     display: grid;
     height: auto;
     grid-template-columns: 5% 25% 70% 5%;
-    grid-template-rows: 2% 3% 2% 90% 3%;
+    grid-template-rows: 20px 70px 20px 100% 20px;
     background-color: #2f2f2f;
     grid-template-areas: ". . . ." ". cat category-name . " ". . . ." ". main-categories subcategories ." ". . . . ";
 
@@ -429,7 +450,7 @@ ul {
 }
 
 #main-categories .single-category:hover {
-    border-color: #c50111;
+    border-color: #fb8026;
     border-width: 2px;
 
 }
@@ -450,23 +471,31 @@ ul {
 #main-categories {
     grid-area: main-categories;
     font-size: 120%;
+    display: flex;
+    flex-direction: column;
 }
 
 .single-category {
     border-style: none none solid none;
     border-width: 1px;
-    padding-top: 23px;
-    width: 74%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: 'category-photo top-category';
+    width: 83%;
+    height: 80px;
 }
-
-.single-category p {
-    padding-top: 5px;
-    font-size: 82%;
+#top-category{
+    grid-area: top-category;
+    font-size: 85%;
+    padding-left: 8%;
 }
-
-.single-category img {
-    padding-right: 40px;
-    float: left;
+#top-category p{
+    padding-top: 10px;
+}
+#category-photo{
+    grid-area: category-photo;
+    align-self: center;
 }
 
 #subcategories {
@@ -474,13 +503,13 @@ ul {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     max-height: 1200px
 }
 
 .desc {
     height: 70px;
-    font-size: 85%;
+    font-size: 95%;
     margin-left: 100px;
     margin-top: 10px;
 }
@@ -665,7 +694,7 @@ ul {
         display: grid;
         height: auto;
         grid-template-columns: 3% 29% 65% 3%;
-        grid-template-rows: 3% 5% 5% 84% 3%;
+        grid-template-rows: 30px 30px 15px 100% 15px;
         background-color: #2f2f2f;
         grid-template-areas: ". . . ." ". cat category-name . " ". . . ." ". main-categories subcategories ." ". . . . ";
 
@@ -691,11 +720,12 @@ ul {
 
     #main-categories {
         grid-area: main-categories;
-        font-size: 105%;
+        font-size: 120%;
     }
 
     .single-category {
-        width: 70%;
+
+        width: 80%;
     }
 
     .single-category p {
@@ -703,21 +733,21 @@ ul {
     }
 
     .single-category img {
-        width: 45%;
+        width: 120%;
         height: auto;
         padding-right: 35px;
         float: left;
     }
 
     #subcategories {
-        max-height: 1200px; /*?????????????????*/
+        max-height: 1200px;
     }
 
     .desc {
         height: 65px;
         font-size: 78%;
         margin-left: 100px;
-        margin-top: 5px;
+        margin-top: 10px;
     }
 
     .single-subcategory {
@@ -739,6 +769,9 @@ ul {
         grid-template-rows: 122px 60px auto 300px 311px;
         grid-template-areas: "shop-header" "info-bar" "app-content" "info-panel" "shop-footer";
         color: #cccccc;
+    }
+    .app-content{
+        height: auto;
     }
 
     .shop-header {
@@ -882,9 +915,8 @@ ul {
     /*********************************/
     #category {
         display: grid;
-        height: auto;
         grid-template-columns: 3% 29% 65% 3%;
-        grid-template-rows: 3% 5% 3% 86% 3%;
+        grid-template-rows: 20px 40px 5px 100% 20px;
         background-color: #2f2f2f;
         grid-template-areas: ". . . ." ". cat category-name . " ". . . ." ". main-categories subcategories ." ". . . . ";
 
@@ -908,16 +940,16 @@ ul {
         font-size: 105%;
     }
 
-    #main-categories {
-
-    }
-
     .single-category {
         width: 82%;
+        height: 70px;
+        grid-template-columns: 100%;
+        grid-template-areas: 'top-category';
     }
 
     .single-category p {
         font-size: 92%;
+
     }
 
     .single-category img {
@@ -926,16 +958,23 @@ ul {
         padding-right: 35px;
         float: left;
     }
+    #top-category{
+        padding-left: 0;
+        font-size: 100%;
+    }
+    #top-category p{
+        padding-top: 18px;
+    }
 
     #subcategories {
-        max-height: 1200px; /*?????????????????*/
+        align-items: center;
     }
 
     .desc {
         height: 65px;
-        font-size: 70%;
+        font-size: 80%;
         margin-left: 100px;
-        margin-top: 5px;
+        padding-top: 5px;
     }
 
     .single-subcategory {
@@ -946,8 +985,6 @@ ul {
         float: left;
         padding-right: 40px;
         padding-top: 5px;
-        width: 38%;
-        height: auto;
     }
 
 }
@@ -984,7 +1021,7 @@ ul {
     }
 
     .nav-categories {
-        font-size: 89%;
+        font-size: 95%;
     }
 
     .search-bar {
@@ -1166,8 +1203,7 @@ ul {
     #category {
         display: grid;
         height: auto;
-        grid-template-columns: 3% 29% 65% 3%;
-        grid-template-rows: 3% 5% 3% 86% 3%;
+        grid-template-columns: 3% 35% 59% 3%;
         background-color: #2f2f2f;
         grid-template-areas: ". . . ." ". cat category-name . " ". . . ." ". main-categories subcategories ." ". . . . ";
 
@@ -1197,38 +1233,46 @@ ul {
     }
 
     .single-category {
-        width: 65%;
+        width: 80%;
+        height: 60px;
+        grid-template-columns: 100%;
+        grid-template-areas: 'top-category';
+        align-content: center;
+
     }
 
     .single-category p {
-        font-size: 95%;
+        font-size: 110%;
     }
 
     .single-category img {
         display: none;
     }
 
+    #top-category{
+        width: 100%;
+        padding-left: 0;
+    }
+
     #subcategories {
-        max-height: 1200px; /*?????????????????*/
+        max-height: none;
+        flex-wrap: nowrap;
     }
 
     .desc {
-        height: 65px;
-        font-size: 70%;
-        margin-left: 80px;
-        margin-top: 5px;
+        font-size: 95%;
+        padding-top: 5px;
     }
 
     .single-subcategory {
-        width: 40%;
+        width: 80%;
     }
 
     .single-subcategory img {
         float: left;
         padding-right: 20px;
-        padding-top: 5px;
-        width: 30%;
-        height: auto;
+        padding-top: 10px;
+
     }
 
 }
@@ -1548,8 +1592,9 @@ ul {
     }
 
     #subcategories {
-        max-height: 2000px; /*?????????????????*/
+        max-height: 2000px;
         flex-wrap: nowrap;
+        align-items: center;
     }
 
     .desc {

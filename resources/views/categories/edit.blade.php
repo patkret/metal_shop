@@ -103,14 +103,21 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 form-group">
-                            {{--<img src="/images/photo/{{$category->photo}}" class="center-block img-responsive" alt="BRAK ZDJĘCIA">--}}
-                            {{Form::label('photo', 'Zdjęcie:',['class' => 'control-label'])}}
-                            {{Form::file('photo')}}
+
+                            {{Form::label('photo_file', 'Zdjęcie:',['class' => 'control-label'])}}
+                            <img src="{{asset($category->photo)}}" class="center-block img-responsive" alt="BRAK ZDJĘCIA" style="max-width: 150px; height: 70px ">
+                            <br>
+                            <div class="row-sm-6">
+                            {{Form::file('photo_file')}}
+                            </div>
                         </div>
                         <div class="col-xs-6 form-group">
-                            {{--<img src="asset{{$category->logo}}" class="center-block img-responsive" alt="BRAK ZDJĘCIA">--}}
-                            {{Form::label('logo', 'Logo:',['class' => 'control-label'])}}
-                            {{Form::file('logo')}}
+                            {{Form::label('logo_file', 'Logo:',['class' => 'control-label'])}}
+                            <img src="{{asset($category->logo)}}" class="center-block img-responsive" alt="BRAK ZDJĘCIA" style="max-width: 150px; height: 70px">
+                            <br>
+                            <div class="row-sm-6">
+                            {{Form::file('logo_file')}}
+                            </div>
                         </div>
                     </div>
                 </div>

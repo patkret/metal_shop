@@ -6,13 +6,13 @@ use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use App\Category;
 use App\Group;
-
+use Illuminate\Support\Facades\DB;
 
 
 class CategoriesController extends Controller
 {
 
-    public function index() 
+    public function index()
     {
         $topCategories = $this->roots();
         return view('categories.index', compact('topCategories'));
@@ -21,30 +21,36 @@ class CategoriesController extends Controller
     public function create()
     {
         $topCategories = $this->roots();
-        return view('categories.create', compact('topCategories'),[
+        return view('categories.create', compact('topCategories'), [
             'groups' => Group::all(),
 
         ]);
-
-
     }
 
     public function store(StoreCategory $request)
     {
 
-        if ($request->file('logo')) {
-            $logo = str_random(20).'.'.$request->file('logo')->getClientOriginalExtension();
-            $request->file('logo')->move(public_path() . '/images/logo/', $logo);
-            $request->logo = $logo;
+        $last_insert_id = DB::table('information_schema.tables')
+            ->where('table_name', 'categories')
+            ->whereRaw('table_schema = DATABASE()')
+            ->select('AUTO_INCREMENT')->first()->AUTO_INCREMENT;
+
+
+        if ($request->file('logo_file')) {
+            $logo = $last_insert_id.'_logo'  . '.' . $request->file('logo_file')->getClientOriginalExtension();
+            $request->file('logo_file')->move(public_path() . '/images/cat_logo/', $logo);
+            $request->merge(array('logo' => '/images/cat_logo/'.$logo));
+
         }
 
-        if ($request->file('photo')) {
-            $photo = str_random(20).'.'.$request->file('photo')->getClientOriginalExtension();
-            $request->file('photo')->move(public_path() . '/images/photo/', $photo);
-            $request->photo = $photo;
+        if ($request->file('photo_file')) {
+            $photo = $last_insert_id.'_photo'  . '.' . $request->file('photo_file')->getClientOriginalExtension();
+            $request->file('photo_file')->move(public_path() . '/images/cat_photo/', $photo);
+            $request->merge(array('photo' => '/images/cat_photo/'.$photo));
+
         }
 
-        if($request->parent != 0) {
+        if ($request->parent != 0) {
 
             $category = Category::create($request->all(), Category::find($request->parent));
         } else {
@@ -66,11 +72,11 @@ class CategoriesController extends Controller
 
     public function edit(Category $category)
     {
-        $categoryBelongsToGroup= Category::with('groups')->find($category->id)->groups->pluck('name', 'id')->toArray();
+        $categoryBelongsToGroup = Category::with('groups')->find($category->id)->groups->pluck('name', 'id')->toArray();
         $ancestors = Category::whereAncestorOrSelf($category->id)->get();
 
         $ancestorLevels = [];
-        foreach($ancestors as $ancestor) {
+        foreach ($ancestors as $ancestor) {
             $ancestor['level'] = $ancestor->parent_id ? $this->children(Category::find($ancestor->parent_id)) : $this->roots();
             $ancestorLevels[] = $ancestor;
         }
@@ -107,7 +113,22 @@ class CategoriesController extends Controller
         }
     }
 
-    public function update(UpdateCategory $request, Category $category){
+    public function update(UpdateCategory $request, Category $category)
+    {
+
+        if ($request->file('logo_file')) {
+            $logo = $category->id.'_logo'  . '.' . $request->file('logo_file')->getClientOriginalExtension();
+            $request->file('logo_file')->move(public_path() . '/images/cat_logo/', $logo);
+            $request->merge(array('logo' => '/images/cat_logo/'.$logo));
+
+        }
+
+        if ($request->file('photo_file')) {
+            $photo = $category->id.'_photo'  . '.' . $request->file('photo_file')->getClientOriginalExtension();
+            $request->file('photo_file')->move(public_path() . '/images/cat_photo/', $photo);
+            $request->merge(array('photo' => '/images/cat_photo/'.$photo));
+
+        }
 
 
         $category->groups()->sync($request->group_id);
@@ -122,5 +143,24 @@ class CategoriesController extends Controller
 
         return redirect(route('categories.index'));
     }
+
+    //MAIN PAGE
+    public function byMain($mainCategory)
+    {
+
+        $categories = Category::selectByMain($mainCategory);
+
+        return view('main.category', compact('mainCategory', 'categories'));
+    }
+
+    public function showSubcategory($mainCategory, Category $category)
+    {
+
+        $children = $category->children()->get();
+        $categories = Category::selectByMain($mainCategory);
+
+        return view('main.category', compact('children', 'categories', 'mainCategory'));
+    }
+
 
 }

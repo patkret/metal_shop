@@ -40,7 +40,7 @@ Route::group([
     Route::get('/products/toggle/{product}', 'ProductsController@toggle')->name('products.toggle');
     Route::get('/products/show/{product}', 'ProductsController@show')->name('products.show');
     Route::get('/products/edit/{product}', 'ProductsController@edit')->name('products.edit');
-    Route::put('/products/update/{product}', 'ProductsController@update')->name('products.update');
+    Route::post('/products/update/{product}', 'ProductsController@update')->name('products.update');
 
 
 //assign product to category
@@ -137,9 +137,11 @@ Route::group([
 Route::get('/', function () {
     return view('main.index');
 });
-
-Route::get('/category', function () {
-    return view('main.category');
+Route::get('/login', function () {
+    return view('auth.login');
 });
+
+Route::get('/{mainCategory}', 'CategoriesController@byMain')->name('categories.byMain');
+Route::get('/{mainCategory}/{category}', 'CategoriesController@showSubcategory')->name('categories.showSubcategory');
 
 Auth::routes();

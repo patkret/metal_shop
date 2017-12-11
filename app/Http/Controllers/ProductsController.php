@@ -41,17 +41,24 @@ class ProductsController extends Controller
     public function store(StoreProduct $request)
     {
 
-        if ($request->file('photo_1')) {
-            $photo_1 = str_random(20).'.'.$request->file('photo_1')->getClientOriginalExtension();
-            $request->file('photo_1')->move(public_path() . '/images/photo/', $photo_1);
-            $request->photo_1 = $photo_1;
+        $last_insert_id = DB::table('information_schema.tables')
+                ->where('table_name', 'products')
+                ->whereRaw('table_schema = DATABASE()')
+                ->select('AUTO_INCREMENT')->first()->AUTO_INCREMENT;
+
+        if ($request->file('photo_1_file')) {
+            $photo_1 = $last_insert_id.'_photo1'.'.'.$request->file('photo_1_file')->getClientOriginalExtension();
+            $request->file('photo_1_file')->move(public_path() . '/images/product/image_1', $photo_1);
+            $request->merge(array('photo_1' => '/images/product/image_1/'.$photo_1));
+
         }
 
-        if ($request->file('photo_2')) {
-            $photo_2 = str_random(20).'.'.$request->file('photo_2')->getClientOriginalExtension();
-            $request->file('photo_2')->move(public_path() . '/images/photo/', $photo_2);
-            $request->photo_2 = $photo_2;
+        if ($request->file('photo_2_file')) {
+            $photo_2 = $last_insert_id.'_photo2'.'.'.$request->file('photo_2_file')->getClientOriginalExtension();
+            $request->file('photo_2_file')->move(public_path() . '/images/product/image_2/', $photo_2);
+            $request->merge(array('photo_2' => '/images/product/image_2/'.$photo_2));
         }
+
 
         $product = Product::create($request->all());
         $product->save();
@@ -70,6 +77,7 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
+
         $productBelongsToGroup= $product->productsGroups();
 
         $discountedPrice = $product->avg_buy_price + ($product->avg_buy_price * ($product->custom_margin/100));
@@ -83,6 +91,18 @@ class ProductsController extends Controller
 
     public function update(UpdateProduct $request, Product $product)
     {
+        if ($request->file('photo_1_file')) {
+            $photo_1 = $product->id.'_photo1'.'.'.$request->file('photo_1_file')->getClientOriginalExtension();
+            $request->file('photo_1_file')->move(public_path() . '/images/product/image_1/', $photo_1);
+            $request->merge(array('photo_1' => '/images/product/image_1/'.$photo_1));
+
+        }
+
+        if ($request->file('photo_2_file')) {
+            $photo_2 = $product->id.'_photo2'.'.'.$request->file('photo_2_file')->getClientOriginalExtension();
+            $request->file('photo_2_file')->move(public_path() . '/images/product/image_2/', $photo_2);
+            $request->merge(array('photo_2' => '/images/product/image_2/'.$photo_2));
+        }
 
         $product->groups()->sync($request->group_id);
 
