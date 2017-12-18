@@ -153,6 +153,12 @@ class CategoriesController extends Controller
         return view('main.category', compact('mainCategory', 'categories'));
     }
 
+    public function mainChildren($mainCategory)
+    {
+        return Category::selectByMain($mainCategory);
+
+    }
+
     public function showSubcategory($mainCategory, Category $category)
     {
 
@@ -161,6 +167,5 @@ class CategoriesController extends Controller
 
         return view('main.category', compact('children', 'categories', 'mainCategory'));
     }
-
 
 }

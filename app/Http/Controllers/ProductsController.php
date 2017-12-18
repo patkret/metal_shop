@@ -164,12 +164,6 @@ class ProductsController extends Controller
 
     }
 
-//    public function assign()
-//    {
-//        $topCategories = Category::whereIsRoot()->defaultOrder()->get();
-//        return view('products.assign', compact('topCategories'));
-//    }
-
     public function assignProduct(Request $request)
     {
 
@@ -200,6 +194,16 @@ class ProductsController extends Controller
                 ['category_id', '=', $request->parent]
                 ])->delete();            
         }
+    }
+
+    public function notAssigned(){
+
+        $query = "SELECT * FROM products WHERE `id` IN (SELECT `id` FROM product_category)";
+
+        $products = DB::select($query);
+        dd($products);
+        return $products;
+
     }
 
 }

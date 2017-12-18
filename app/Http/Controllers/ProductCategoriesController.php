@@ -25,9 +25,33 @@ class ProductCategoriesController extends Controller
 
     public function findProducts(Request $request)
     {
-        return Product::where('name', 'like', '%' . $request->product_name . '%')
-            ->limit(30)
-            ->get();
+
+        $data = explode(' ', $request->product_name);
+        $data[1] = isset($data[1]) ? $data[1] : '';
+        $data[2] = isset($data[2]) ? $data[2] : '';
+
+        $query = "SELECT * FROM `products` WHERE";
+        if($request->product_name) {
+            $query = $query."(`code` LIKE '%". $data[0] ."%".$data[1]."%".$data[2]."%' )";
+        }
+        if ($request->assigned) {
+            $query = $query."AND `id` ". $request->assigned ." (SELECT `id` FROM `product_category`)";
+        }
+
+        $products = DB::select($query);
+        return $products;
+
+
+//        if($request->product_name){
+//            $query = $query."('code', 'like', '%' . $data[0] . '%'. $data[1].'%'.$data[2].'%')"
+//            ->limit(15)
+//            ->get();}
+
+
+//        return Product::where('name', 'like', '%' . $request->product_name . '%')
+//            ->orWhere('code', 'like', '%'.$request->product_name.'%')
+//            ->limit(30)
+//            ->get();
     }
 
     public function findCategory(Request $request)

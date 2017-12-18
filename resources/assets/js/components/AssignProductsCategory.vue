@@ -4,10 +4,16 @@
             <div class="col-md-5">
                 <label>Wszystkie produkty</label>
                 <input @keyup="findProducts()" v-model="productName" type="text" class="form-control"
-                       placeholder="Wpisz nazwę produktu aby szukać...">
+                       placeholder="Wpisz kod produktu aby szukać...">
+                <div class="col">
+                    <label for="IN"><input type="radio" id="IN" value="IN" v-model="assigned">Przypisane</label>
+
+                    <label for="NOTIN"><input type="radio" id="NOTIN" value="NOT IN"
+                                              v-model="assigned">Nieprzypisane</label>
+                </div>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="product in allProducts">
-                        {{product.name}}
+                        {{product.name}} || KOD: {{product.code}}
                         <button type="button" @click="addProductToCategory(product)"
                                 style="background: none; border: none;" class="pull-right">
                             <i class="fa fa-plus-square-o" aria-hidden="true"></i>
@@ -57,7 +63,8 @@
             return {
                 allProducts: [],
                 assignedProducts: [],
-                productName: ''
+                productName: '',
+                assigned: '',
             }
         },
         methods: {
@@ -66,11 +73,14 @@
                     this.allProducts = [];
                 }
 
-                axios.post(`/productcategories/find-products`, {
+                axios.post(`/productcategories/find-products/`, {
+//                axios.post(`/random`, {
+                    assigned: this.assigned,
                     product_name: this.productName
                 })
                     .then(result => {
                         this.allProducts = result.data;
+                        console.log(result)
                     })
 
             },
@@ -81,7 +91,7 @@
             },
             addProductToCategory(product) {
 
-                
+
                 this.assignedProducts.push(product);
 
                 this.allProducts = this.allProducts.filter(item => item.id !== product.id);
@@ -103,7 +113,7 @@
 
                 console.log('id wybranej kategorii: ', this.$store.state.finalCategory);
 
-                if (product.id> 0) {
+                if (product.id > 0) {
                     axios.delete(`/productcategories/delete-product/${product.id}/${this.$store.state.finalCategory}`).then(
                         result => {
                             console.log(result);

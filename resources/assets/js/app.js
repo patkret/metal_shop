@@ -6,6 +6,7 @@ import axios from 'axios';
 
 window.axios = axios;
 
+
 import store from './store';
 import Clients from './components/Clients.vue';
 import Products from './components/Products.vue';
@@ -14,9 +15,6 @@ import PickCategory from './components/PickCategory.vue';
 import AssignProductsCategory from './components/AssignProductsCategory.vue';
 import PickProduct from './components/PickProduct.vue';
 import ProductDescriptions from './components/ProductDescriptions.vue';
-
-
-
 
 
 const app = new Vue({
@@ -29,6 +27,6 @@ const app = new Vue({
         PickCategory,
         AssignProductsCategory,
         PickProduct,
-        ProductDescriptions
+        ProductDescriptions,
     }
 });

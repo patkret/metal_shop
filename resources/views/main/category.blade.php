@@ -5,6 +5,7 @@
         <div class="category-name">
             <p>ŚRUBY NIERDZEWNE</p>
         </div>
+
        <div class="select-category">
        <select class="form-control">
            <option value="">Wybierz kategorię</option>
@@ -21,7 +22,8 @@
                        <img src="{{asset($category->logo)}}">
                    </div>
                    <div id="top-category">
-                       <a href="{{route('categories.showSubcategory', ['mainCategory' => $mainCategory, 'category' => $category->id])}}"><p>{{$category->name}}</p></a>
+                       <a href="{{route('categories.showSubcategory', ['mainCategory' => $mainCategory, 'category' => $category->id])}}">
+                           <p>{{$category->name}}</p></a>
                    </div>
                </div>
         @endforeach
@@ -33,85 +35,12 @@
            <div class="single-subcategory">
                <img src="{{asset($child->photo)}}">
                <div class="desc">
-                   {{$child->name}}
+                   <p>{{$child->name}}</p>
                </div>
            </div>
            @endforeach
            @endif
-
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-           {{--<div class="single-subcategory">--}}
-               {{--<img src="\images\photo\sruba933.png">--}}
-               {{--<div class="desc">--}}
-                   {{--Śruby z łbem sześciokątnym z gwintem na całej długości trzpienia DIN 933 nierdzewne A2--}}
-               {{--</div>--}}
-           {{--</div>--}}
-       {{--</div>--}}
    </div>
+
 
 @endsection

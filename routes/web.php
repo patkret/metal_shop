@@ -50,7 +50,7 @@ Route::group([
     Route::get('/products/by-category/{id}', 'ProductCategoriesController@showByCategory')->name('products.showByCategory');
     Route::post('/productcategories/assign/{product}/{category}', 'ProductCategoriesController@assignProduct')->name('productcategories.assignProduct');
     Route::delete('/productcategories/delete-product/{product}/{category}', 'ProductCategoriesController@deleteProduct')->name('productcategories.deleteProduct');
-
+    Route::get('/products/notassigned', 'ProductsController@notAssigned')->name('products.notAssigned');
 
 //    Route::post('/productcategories/showByPhrase/{assigned}/{available}', 'ProductCategoriesController@showByPhrase')->name('productcategories.showByPhrase');
 //    Route::get('/product-categories/assign', 'ProductsController@assign')->name('products.assign');
@@ -142,6 +142,8 @@ Route::get('/login', function () {
 });
 
 Route::get('/{mainCategory}', 'CategoriesController@byMain')->name('categories.byMain');
+Route::get('/{mainCategory}/children', 'CategoriesController@mainChildren')->name('categories.mainChildren');
 Route::get('/{mainCategory}/{category}', 'CategoriesController@showSubcategory')->name('categories.showSubcategory');
+
 
 Auth::routes();
