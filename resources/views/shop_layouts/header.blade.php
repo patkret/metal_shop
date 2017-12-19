@@ -115,14 +115,16 @@
             <li id="two">
                 <a href="{{route('categories.byMain',['mainCategory' => 2])}}">OSPRZĘT ŻEGLARSKI</a>
                 <ul class="sub-menu" id="two-sub">
-                    <div class="two-sub-menu-content">
+                    <div class="second-sub-menu-content">
                         @foreach(\App\Category::selectByMain(2) as $category)
+                            <div class="second-sub-menu-cat">
                             <li>
                                 <img src="{{$category->logo}}" />
                                 <a href="{{route('categories.showSubcategory', ['mainCategory' => 2, 'category' => $category->id])}}">
                                     <span>{{$category->name}}</span>
                                 </a>
                             </li>
+                            </div>
                         @endforeach
                     </div>
                 </ul>
@@ -130,9 +132,11 @@
             <li id="three">
                 <a href="{{route('categories.byMain',['mainCategory' => 3])}}">NARZĘDZIA</a>
                 <ul class="sub-menu" id="three-sub">
-                    <div class="three-sub-menu-content">
+                    <div class="third-sub-menu-content">
                         @foreach(\App\Category::selectByMain(3) as $category)
+                        <div class="third-sub-menu-cat">
                             <li><img src="{{$category->logo}}" /><span>{{$category->name}}</span></li>
+                        </div>
                         @endforeach
                     </div>
                 </ul>
@@ -140,9 +144,11 @@
             <li id="four">
                 <a href="{{route('categories.byMain',['mainCategory' => 4])}}">CHEMIA</a>
                 <ul class="sub-menu" id="four-sub">
-                    <div class="four-sub-menu-content">
+                    <div class="fourth-sub-menu-content">
                         @foreach(\App\Category::selectByMain(4) as $category)
+                            <div class="fourth-sub-menu-cat">
                             <li><img src="{{$category->logo}}" /><span>{{$category->name}}</span></li>
+                            </div>
                         @endforeach
                     </div>
                 </ul>

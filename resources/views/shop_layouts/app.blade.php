@@ -19,8 +19,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -70,31 +69,43 @@
     $(document).ready(function(){
 
         $("#one").mouseenter(function(){
+            $("#one > a").addClass("one-active");
             $("#one-sub").stop(true).slideDown("slow");
         });
         $("#one").mouseleave(function(){
             $("#one-sub").stop(true).slideUp("fast");
+            $("#one > a").removeClass("one-active");
         });
         $("#two").mouseenter(function(){
             $("#two-sub").stop(true).slideDown("slow");
+            $("#two > a").addClass("two-active");
         });
         $("#two").mouseleave(function(){
             $("#two-sub").stop(true).slideUp("fast");
+            $("#two > a").removeClass("two-active");
         });
 
         $("#three").mouseenter(function(){
             $("#three-sub").stop(true).slideDown("slow");
+            $("#three > a").addClass("three-active");
         });
         $("#three").mouseleave(function(){
             $("#three-sub").stop(true).slideUp("fast");
+            $("#three > a").removeClass("three-active");
         });
 
         $("#four").mouseenter(function(){
             $("#four-sub").stop(true).slideDown("slow");
+            $("#four > a").addClass("four-active");
         });
         $("#four").mouseleave(function(){
             $("#four-sub").stop(true).slideUp("fast");
+            $("#four > a").removeClass("four-active");
         });
+
+
+
+
 
 
 });
