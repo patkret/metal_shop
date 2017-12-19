@@ -165,7 +165,7 @@ class CategoriesController extends Controller
         $children = $category->children()->get();
         $categories = Category::selectByMain($mainCategory);
 
-        return view('main.category', compact('children', 'categories', 'mainCategory'));
+        return view('main.category', compact('children', 'categories', 'mainCategory', 'category'));
     }
 
 }

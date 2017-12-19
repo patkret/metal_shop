@@ -3,7 +3,11 @@
     <div id="category">
         <p>KATEGORIA</p>
         <div class="category-name">
-            <p>ŚRUBY NIERDZEWNE</p>
+            @if(isset($category))
+                {{$category->name}}
+            @else
+            <span>WYBIERZ KATEGORIĘ</span>
+            @endif
         </div>
 
         <div class="select-category">
@@ -42,7 +46,7 @@
                                         @if(isset($children))
                                             @foreach($children as $child)
                                                 <div class="single-subcategory">
-                                                    <img src="{{asset($child->photo)}}">
+                                                    <img src="{{asset($child->photo)}}?noresize" width="115px">
                                                     <div class="desc">
                                                         <p>{!!html_entity_decode($child->name)!!}</p>
                                                     </div>
