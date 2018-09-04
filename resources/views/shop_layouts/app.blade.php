@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{!! asset('images/logo/sygnet.png') !!}"/>
-    <title>HURTMET</title>
+    <title>SHOP</title>
 
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->

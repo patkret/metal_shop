@@ -55,8 +55,6 @@ class User extends Authenticatable
     }
 
 
-
-
     public function getModules()
     {
         foreach($this->roles as $item) {

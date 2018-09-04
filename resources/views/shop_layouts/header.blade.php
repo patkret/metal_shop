@@ -31,7 +31,7 @@
         <img src="\images\logo\sygnet.png">
     </div>
     <div class="logo-text">
-        <a href="/">HURTMET pl</a>
+        <a href="/">METAL pl</a>
     </div>
 
     {{--<div class="nav-categories" id="nav-categories">--}}

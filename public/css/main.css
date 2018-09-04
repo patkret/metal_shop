@@ -111,7 +111,7 @@ ul {
 
 .logo-text {
     grid-area: logo-text;
-    /*font-size: 150%;*/
+    font-size: 22px;
     align-self: center;
     font-weight: 700;
 }
